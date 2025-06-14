@@ -1,73 +1,50 @@
-# Welcome to your Lovable project
 
-## Project info
+# 🈺 TRADOKU— PDFtraduction Web App
 
-**URL**: https://lovable.dev/projects/da87eced-b580-44e3-9a6a-ded6a691c8e4
+Une plateforme communautaire de traduction de mangas et webtoons, à partir de fichiers PDF. Chaque page est annotée, les bulles sont traduites manuellement (aides IA optionnelles) et validées une par une.
 
-## How can I edit this code?
+## 🚀 Stack Technique
 
-There are several ways of editing your application.
+| Composant        | Technologie utilisée                     |
+|------------------|-------------------------------------------|
+| Frontend         | React + Vite                             |
+| Styling          | TailwindCSS                              |
+| PDF Upload       | react-dropzone                           |
+| PDF Rendering    | pdfjs-dist / react-pdf                   |
+| Bubble Detection | Manuel (rectangle drag)                  |
+| OCR              | Tesseract.js                             |
+| IA Traduction    | Traduction avec IA Hugging Face.         |
+| Auth & DB        | Supabase (Auth + Postgres + Storage)     |
+| Icônes           | [animated-fluent-emoji](https://animated-fluent-emoji.vercel.app/)     |
+| lib ui.          | 21st.dev                                  |
 
-**Use Lovable**
+## 🔧 Fonctionnement
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/da87eced-b580-44e3-9a6a-ded6a691c8e4) and start prompting.
+1. **Choix d'une série** (Existant ou pas)
+2. **Upload d’un chapitre** (PDF)
+3. **Rendu de chaque page**
+4. **Annotation des bulles de texte** (rectangle + OCR)
+5. **Traduction IA pré-remplie**
+6. **Validation manuelle de chaque bulle et correction si nécessaire**
+7. **Publication du chapitre**
+8. **Stockage & historique de chaque chapitre dans Supabase**
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✨ Roadmap
+- [ ] Début de l'interface et des pages nécessaires
+- [ ] Upload + rendu PDF
+- [ ] Détection manuelle de bulles
+- [ ] Extraction de texte (OCR)
+- [ ] Intégration IA traduction
+- [ ] Système de validation bulle par bulle
+- [ ] Mode lecture comparatif
+- [ ] Gestion de projets communautaires
+- [ ] Version publique
 
-**Use your preferred IDE**
+## 🧑‍💻 Dev setup
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Install
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Dev server
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/da87eced-b580-44e3-9a6a-ded6a691c8e4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
