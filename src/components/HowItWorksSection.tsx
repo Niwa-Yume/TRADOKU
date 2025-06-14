@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -7,42 +8,42 @@ const HowItWorksSection = () => {
       step: "1",
       title: "Upload du chapitre",
       description: "Importez votre fichier PDF contenant le chapitre à traduire",
-      emoji: "📁",
+      emoji: "https://animated-fluent-emoji.vercel.app/file-folder.gif",
       color: "from-blue-500 to-cyan-500"
     },
     {
       step: "2", 
       title: "Rendu des pages",
       description: "Visualisez chaque page du manga avec notre système de rendu optimisé",
-      emoji: "📄",
+      emoji: "https://animated-fluent-emoji.vercel.app/page-with-curl.gif",
       color: "from-purple-500 to-pink-500"
     },
     {
       step: "3",
       title: "Annotation des bulles",
       description: "Délimitez manuellement les zones de texte avec notre outil de sélection",
-      emoji: "🎯",
+      emoji: "https://animated-fluent-emoji.vercel.app/bullseye.gif",
       color: "from-green-500 to-emerald-500"
     },
     {
       step: "4",
       title: "Extraction OCR",
       description: "Le texte est automatiquement extrait de chaque bulle sélectionnée",
-      emoji: "🔍",
+      emoji: "https://animated-fluent-emoji.vercel.app/magnifying-glass-tilted-left.gif",
       color: "from-orange-500 to-red-500"
     },
     {
       step: "5",
       title: "Traduction IA",
       description: "Une traduction automatique est générée et pré-remplie pour vous aider",
-      emoji: "🤖",
+      emoji: "https://animated-fluent-emoji.vercel.app/robot.gif",
       color: "from-indigo-500 to-purple-500"
     },
     {
       step: "6",
       title: "Validation manuelle",
       description: "Corrigez et validez chaque traduction pour assurer la qualité",
-      emoji: "✅",
+      emoji: "https://animated-fluent-emoji.vercel.app/check-mark-button.gif",
       color: "from-teal-500 to-green-500"
     }
   ];
@@ -68,7 +69,11 @@ const HowItWorksSection = () => {
                   <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white font-bold text-xl mr-3`}>
                     {step.step}
                   </div>
-                  <span className="text-3xl">{step.emoji}</span>
+                  <img 
+                    src={step.emoji} 
+                    alt={step.title}
+                    className="w-10 h-10"
+                  />
                 </div>
                 <CardTitle className="text-xl font-bold">{step.title}</CardTitle>
               </CardHeader>
@@ -82,8 +87,9 @@ const HowItWorksSection = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="text-lg px-8 py-6">
-            🚀 Commencer maintenant
+          <Button size="lg" className="text-lg px-8 py-6 flex items-center gap-2">
+            <img src="https://animated-fluent-emoji.vercel.app/rocket.gif" alt="rocket" className="w-5 h-5" />
+            Commencer maintenant
           </Button>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Upload, MousePointer, Eye, Bot, CheckCircle, Share2 } from "lucide-react";
 
@@ -7,37 +8,37 @@ const FeaturesSection = () => {
       icon: <Upload className="h-12 w-12 text-primary" />,
       title: "Upload PDF",
       description: "Importez vos chapitres de mangas et webtoons en format PDF en quelques clics",
-      emoji: "📤"
+      emoji: "https://animated-fluent-emoji.vercel.app/inbox-tray.gif"
     },
     {
       icon: <MousePointer className="h-12 w-12 text-primary" />,
       title: "Annotation manuelle",
       description: "Délimitez précisément chaque bulle de texte avec notre outil de sélection intuitive",
-      emoji: "🎯"
+      emoji: "https://animated-fluent-emoji.vercel.app/bullseye.gif"
     },
     {
       icon: <Eye className="h-12 w-12 text-primary" />,
       title: "OCR avancé",
       description: "Extraction automatique du texte des bulles grâce à Tesseract.js",
-      emoji: "👁️"
+      emoji: "https://animated-fluent-emoji.vercel.app/eye.gif"
     },
     {
       icon: <Bot className="h-12 w-12 text-primary" />,
       title: "IA de traduction",
       description: "Traduction automatique pré-remplie avec Google Translate ou autres APIs",
-      emoji: "🤖"
+      emoji: "https://animated-fluent-emoji.vercel.app/robot.gif"
     },
     {
       icon: <CheckCircle className="h-12 w-12 text-primary" />,
       title: "Validation communautaire",
       description: "Chaque traduction est vérifiée et validée par la communauté bulle par bulle",
-      emoji: "✅"
+      emoji: "https://animated-fluent-emoji.vercel.app/check-mark-button.gif"
     },
     {
       icon: <Share2 className="h-12 w-12 text-primary" />,
       title: "Mode lecture",
       description: "Visualisez le résultat final avec un mode lecture comparatif avant/après",
-      emoji: "📚"
+      emoji: "https://animated-fluent-emoji.vercel.app/books.gif"
     }
   ];
 
@@ -61,9 +62,11 @@ const FeaturesSection = () => {
                 <div className="flex justify-center mb-4">
                   <div className="relative">
                     {feature.icon}
-                    <span className="absolute -top-2 -right-2 text-2xl">
-                      {feature.emoji}
-                    </span>
+                    <img 
+                      src={feature.emoji} 
+                      alt={feature.title}
+                      className="absolute -top-2 -right-2 w-8 h-8"
+                    />
                   </div>
                 </div>
                 <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>

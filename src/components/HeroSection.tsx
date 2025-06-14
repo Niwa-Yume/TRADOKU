@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { FileText, Users, Zap } from "lucide-react";
 
@@ -14,8 +15,13 @@ const HeroSection = () => {
           <p className="text-xl md:text-2xl text-muted-foreground mb-4">
             Plateforme communautaire de traduction
           </p>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            📚 Mangas • 🎨 Webtoons • 📄 Fichiers PDF
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 flex items-center justify-center gap-3">
+            <img src="https://animated-fluent-emoji.vercel.app/book.gif" alt="book" className="w-6 h-6" />
+            Mangas • 
+            <img src="https://animated-fluent-emoji.vercel.app/artist-palette.gif" alt="palette" className="w-6 h-6" />
+            Webtoons • 
+            <img src="https://animated-fluent-emoji.vercel.app/page-facing-up.gif" alt="page" className="w-6 h-6" />
+            Fichiers PDF
           </p>
           
           <div className="text-lg text-foreground/80 mb-12 max-w-3xl mx-auto">
@@ -27,11 +33,13 @@ const HeroSection = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button size="lg" className="text-lg px-8 py-6">
-              🚀 Commencer à traduire
+            <Button size="lg" className="text-lg px-8 py-6 flex items-center gap-2">
+              <img src="https://animated-fluent-emoji.vercel.app/rocket.gif" alt="rocket" className="w-5 h-5" />
+              Commencer à traduire
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-              📖 Explorer les projets
+            <Button variant="outline" size="lg" className="text-lg px-8 py-6 flex items-center gap-2">
+              <img src="https://animated-fluent-emoji.vercel.app/open-book.gif" alt="open book" className="w-5 h-5" />
+              Explorer les projets
             </Button>
           </div>
 
