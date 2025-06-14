@@ -17,23 +17,20 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+    <header className={`fixed top-0 z-50 w-full transition-all duration-300 ${
       scrolled 
-        ? 'bg-background/80 backdrop-blur-xl border-b shadow-lg' 
+        ? 'bg-white/95 backdrop-blur-lg border-b shadow-sm' 
         : 'bg-transparent'
     }`}>
-      <div className="container flex h-20 items-center justify-between">
-        <div className="flex items-center gap-3 slide-in-left">
-          <div className="relative">
-            <BookOpen className="h-10 w-10 text-primary float-animation" />
-            <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 rounded-full blur opacity-30 animate-pulse"></div>
-          </div>
-          <span className="text-3xl font-black bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 bg-clip-text text-transparent gradient-shift">
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center gap-3">
+          <BookOpen className="h-8 w-8 text-purple-600" />
+          <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             TRADOKU
           </span>
-          <div className="text-xs bg-gradient-to-r from-orange-400 to-red-500 text-white px-2 py-1 rounded-full font-bold animate-bounce">
+          <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-medium">
             BETA
-          </div>
+          </span>
         </div>
 
         {/* Desktop Navigation */}
@@ -42,73 +39,64 @@ const Header = () => {
             { href: "#features", text: "Fonctionnalités" },
             { href: "#how-it-works", text: "Comment ça marche" },
             { href: "#community", text: "Communauté" }
-          ].map((item, index) => (
+          ].map((item) => (
             <a 
               key={item.href}
               href={item.href} 
-              className={`relative text-foreground/80 hover:text-foreground transition-all duration-300 font-medium slide-in-up animate-delay-${(index + 1) * 100} group`}
+              className="text-gray-700 hover:text-purple-600 transition-colors duration-200 font-medium"
             >
               {item.text}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
 
-        {/* Search Bar with enhanced styling */}
-        <div className="hidden md:flex items-center gap-4 slide-in-right">
-          <div className="relative group">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-hover:text-purple-500" />
+        {/* Search and Login */}
+        <div className="hidden md:flex items-center gap-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               placeholder="Rechercher un manga..."
-              className="pl-10 w-72 bg-background/50 backdrop-blur border-2 border-transparent hover:border-purple-500/50 focus:border-purple-500 transition-all duration-300"
+              className="pl-10 w-64 border-gray-200 focus:border-purple-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
           </div>
-          <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-6 py-2 rounded-full transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6">
             Connexion
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 rounded-full hover:bg-purple-500/20 transition-colors duration-300"
+          className="md:hidden p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? (
-            <X className="h-6 w-6 rotate-in" />
-          ) : (
-            <Menu className="h-6 w-6 scale-in" />
-          )}
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Enhanced Mobile Menu */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t bg-background/95 backdrop-blur-xl manga-reveal">
-          <div className="container py-6 space-y-6">
-            <div className="relative group">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Rechercher un manga..."
-                className="pl-10 w-full bg-background/50 backdrop-blur border-2 border-purple-500/30 focus:border-purple-500"
-              />
+        <div className="md:hidden border-t bg-white/95 backdrop-blur-lg">
+          <div className="container py-4 space-y-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input placeholder="Rechercher un manga..." className="pl-10 w-full" />
             </div>
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-2">
               {[
                 { href: "#features", text: "Fonctionnalités" },
                 { href: "#how-it-works", text: "Comment ça marche" },
                 { href: "#community", text: "Communauté" }
-              ].map((item, index) => (
+              ].map((item) => (
                 <a 
                   key={item.href}
                   href={item.href} 
-                  className={`text-foreground/80 hover:text-foreground transition-colors font-medium p-3 rounded-lg hover:bg-purple-500/10 slide-in-left animate-delay-${(index + 1) * 100}`}
+                  className="text-gray-700 hover:text-purple-600 transition-colors p-2 rounded"
                 >
                   {item.text}
                 </a>
               ))}
             </nav>
-            <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-full">
+            <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
               Connexion
             </Button>
           </div>

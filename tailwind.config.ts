@@ -85,67 +85,11 @@ export default {
 					to: {
 						height: '0'
 					}
-				},
-				float: {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-20px)' }
-				},
-				'pulse-slow': {
-					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0.5' }
-				},
-				'gradient-shift': {
-					'0%, 100%': { backgroundPosition: '0% 50%' },
-					'50%': { backgroundPosition: '100% 50%' }
-				},
-				'slide-in-up': {
-					'0%': { transform: 'translateY(100px)', opacity: '0' },
-					'100%': { transform: 'translateY(0)', opacity: '1' }
-				},
-				'slide-in-left': {
-					'0%': { transform: 'translateX(-100px)', opacity: '0' },
-					'100%': { transform: 'translateX(0)', opacity: '1' }
-				},
-				'slide-in-right': {
-					'0%': { transform: 'translateX(100px)', opacity: '0' },
-					'100%': { transform: 'translateX(0)', opacity: '1' }
-				},
-				'scale-in': {
-					'0%': { transform: 'scale(0.8)', opacity: '0' },
-					'100%': { transform: 'scale(1)', opacity: '1' }
-				},
-				'rotate-in': {
-					'0%': { transform: 'rotate(-180deg) scale(0)', opacity: '0' },
-					'100%': { transform: 'rotate(0deg) scale(1)', opacity: '1' }
-				},
-				'manga-panels': {
-					'0%': { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' },
-					'25%': { clipPath: 'polygon(0% 0%, 100% 0%, 100% 25%, 0% 25%)' },
-					'50%': { clipPath: 'polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%)' },
-					'75%': { clipPath: 'polygon(0% 0%, 100% 0%, 100% 75%, 0% 75%)' },
-					'100%': { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }
-				},
-				'comic-zoom': {
-					'0%': { transform: 'scale(1) rotate(0deg)' },
-					'25%': { transform: 'scale(1.1) rotate(1deg)' },
-					'50%': { transform: 'scale(1.05) rotate(-0.5deg)' },
-					'75%': { transform: 'scale(1.08) rotate(0.5deg)' },
-					'100%': { transform: 'scale(1) rotate(0deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 6s ease-in-out infinite',
-				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
-				'gradient-shift': 'gradient-shift 8s ease infinite',
-				'slide-in-up': 'slide-in-up 0.6s ease-out forwards',
-				'slide-in-left': 'slide-in-left 0.8s ease-out forwards',
-				'slide-in-right': 'slide-in-right 0.8s ease-out forwards',
-				'scale-in': 'scale-in 0.5s ease-out forwards',
-				'rotate-in': 'rotate-in 0.7s ease-out forwards',
-				'manga-reveal': 'manga-panels 1.2s ease-out forwards',
-				'comic-hover': 'comic-zoom 0.6s ease-in-out'
+				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
 		}
 	},
