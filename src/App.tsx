@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
+import TranslatePage from "@/pages/TranslatePage";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/translate" element={<TranslatePage />} />
           {/* Redirection pour toute route inconnue vers la page d'accueil */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

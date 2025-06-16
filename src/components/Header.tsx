@@ -48,6 +48,12 @@ const Header = () => {
               {item.text}
             </a>
           ))}
+          <Link
+            to="/translate"
+            className="ml-4 text-purple-600 hover:underline font-semibold transition"
+          >
+            Translate
+          </Link>
         </nav>
 
         {/* Search and Login */}
@@ -104,6 +110,12 @@ const Header = () => {
                   {item.text}
                 </a>
               ))}
+              <Link
+                to="/translate"
+                className="text-purple-600 hover:underline font-semibold transition mt-2"
+              >
+                Translate
+              </Link>
               <Link
                 to="/login"
                 className="text-gray-700 hover:text-purple-600 transition-colors p-2 rounded"
