@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -6,44 +5,44 @@ const HowItWorksSection = () => {
   const steps = [
     {
       step: "1",
-      title: "Upload du chapitre",
-      description: "Importez votre fichier PDF contenant le chapitre à traduire",
-      emoji: "📁",
+      title: "Upload Chapter",
+      description: "Import your PDF file containing the chapter to translate",
+      emoji: "",
       color: "bg-blue-500"
     },
     {
       step: "2", 
-      title: "Rendu des pages",
-      description: "Visualisez chaque page du manga avec notre système de rendu haute définition",
-      emoji: "📄",
+      title: "Page Rendering",
+      description: "View each manga page with our high-definition rendering system",
+      emoji: "",
       color: "bg-purple-500"
     },
     {
       step: "3",
-      title: "Annotation des bulles",
-      description: "Délimitez manuellement les zones de texte avec notre outil de sélection",
-      emoji: "🎯",
+      title: "Bubble Annotation",
+      description: "Manually outline text areas with our selection tool",
+      emoji: "",
       color: "bg-green-500"
     },
     {
       step: "4",
-      title: "Extraction OCR",
-      description: "Le texte japonais/coréen est automatiquement extrait de chaque bulle",
-      emoji: "🔍",
+      title: "OCR Extraction",
+      description: "Japanese/Korean text is automatically extracted from each bubble",
+      emoji: "",
       color: "bg-orange-500"
     },
     {
       step: "5",
-      title: "Traduction IA",
-      description: "Une traduction automatique intelligente est générée pour vous assister",
-      emoji: "🤖",
+      title: "AI Translation",
+      description: "An intelligent automatic translation is generated to assist you",
+      emoji: "",
       color: "bg-indigo-500"
     },
     {
       step: "6",
-      title: "Validation manuelle",
-      description: "Corrigez et validez chaque traduction pour garantir une qualité exceptionnelle",
-      emoji: "✅",
+      title: "Manual Validation",
+      description: "Edit and validate each translation to ensure outstanding quality",
+      emoji: "",
       color: "bg-teal-500"
     }
   ];
@@ -54,12 +53,12 @@ const HowItWorksSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Comment ça marche ?
+              How does it work?
             </span>
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Un processus simple et efficace en <span className="text-purple-600 font-semibold">6 étapes</span> pour transformer vos mangas préférés
+            A simple and efficient <span className="text-purple-600 font-semibold">6-step</span> process to transform your favorite manga
           </p>
         </div>
 
@@ -76,7 +75,6 @@ const HowItWorksSection = () => {
                   <div className={`w-12 h-12 ${step.color} rounded-full flex items-center justify-center text-white font-bold text-lg`}>
                     {step.step}
                   </div>
-                  <span className="absolute -top-2 -right-2 text-2xl">{step.emoji}</span>
                 </div>
                 
                 <CardTitle className="text-xl font-bold text-gray-800">
@@ -99,11 +97,11 @@ const HowItWorksSection = () => {
             className="text-lg px-12 py-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl hover-lift smooth-transition"
           >
             <span className="mr-2">🚀</span>
-            Commencer maintenant
+            Start now
           </Button>
           
           <p className="mt-4 text-gray-600">
-            Rejoignez des milliers de traducteurs passionnés !
+            Join thousands of passionate translators!
           </p>
         </div>
       </div>

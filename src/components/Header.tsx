@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, Search, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -36,9 +35,9 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { href: "#features", text: "Fonctionnalités" },
-            { href: "#how-it-works", text: "Comment ça marche" },
-            { href: "#community", text: "Communauté" }
+            { href: "#features", text: "Features" },
+            { href: "#how-it-works", text: "How it works" },
+            { href: "#community", text: "Community" }
           ].map((item) => (
             <a 
               key={item.href}
@@ -55,12 +54,12 @@ const Header = () => {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Rechercher un manga..."
+              placeholder="Search for a manga..."
               className="pl-10 w-64 border-gray-200 focus:border-purple-500"
             />
           </div>
           <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6">
-            Connexion
+            Login
           </Button>
         </div>
 
@@ -79,13 +78,13 @@ const Header = () => {
           <div className="container py-4 space-y-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input placeholder="Rechercher un manga..." className="pl-10 w-full" />
+              <Input placeholder="Search for a manga..." className="pl-10 w-full" />
             </div>
             <nav className="flex flex-col gap-2">
               {[
-                { href: "#features", text: "Fonctionnalités" },
-                { href: "#how-it-works", text: "Comment ça marche" },
-                { href: "#community", text: "Communauté" }
+                { href: "#features", text: "Features" },
+                { href: "#how-it-works", text: "How it works" },
+                { href: "#community", text: "Community" }
               ].map((item) => (
                 <a 
                   key={item.href}
@@ -97,7 +96,7 @@ const Header = () => {
               ))}
             </nav>
             <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-              Connexion
+              Login
             </Button>
           </div>
         </div>

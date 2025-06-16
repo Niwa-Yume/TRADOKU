@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Zap, Globe } from "lucide-react";
 
@@ -22,22 +21,22 @@ const CTASection = () => {
           {/* Main CTA Title */}
           <div className="mb-8">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Rejoignez la révolution de la
+              Join the revolution of
               <span className="block bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                traduction collaborative
+                collaborative translation
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Plus de 10,000 traducteurs nous font déjà confiance pour partager leur passion du manga avec le monde entier.
+              Over 10,000 translators already trust us to share their passion for manga with the world.
             </p>
           </div>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { icon: Users, number: "10K+", label: "Traducteurs actifs" },
-              { icon: Globe, number: "50+", label: "Langues supportées" },
-              { icon: Zap, number: "1M+", label: "Pages traduites" }
+              { icon: Users, number: "10K+", label: "Active translators" },
+              { icon: Globe, number: "50+", label: "Supported languages" },
+              { icon: Zap, number: "1M+", label: "Pages translated" }
             ].map((stat, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
                 <stat.icon className="w-8 h-8 text-purple-600 mx-auto mb-3" />
@@ -51,36 +50,36 @@ const CTASection = () => {
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="text-left">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Pour les traducteurs</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">For translators</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Outils de traduction avancés</span>
+                    <span>Advanced translation tools</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Collaboration en temps réel</span>
+                    <span>Real-time collaboration</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Système de reconnaissance</span>
+                    <span>Recognition system</span>
                   </li>
                 </ul>
               </div>
               <div className="text-left">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Pour les lecteurs</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">For readers</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-pink-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Contenu traduit de qualité</span>
+                    <span>High-quality translated content</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-pink-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Nouvelles sorties en primeur</span>
+                    <span>Early access to new releases</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-pink-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Interface moderne et intuitive</span>
+                    <span>Modern and intuitive interface</span>
                   </li>
                 </ul>
               </div>
@@ -93,7 +92,7 @@ const CTASection = () => {
               size="lg" 
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Commencer gratuitement
+              Start for free
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             
@@ -102,13 +101,13 @@ const CTASection = () => {
               size="lg" 
               className="border-2 border-gray-300 hover:border-purple-600 bg-white hover:bg-purple-50 text-gray-900 hover:text-purple-600 font-semibold px-8 py-3 rounded-lg transition-all duration-300"
             >
-              Découvrir les projets
+              Discover projects
             </Button>
           </div>
 
           {/* Trust Signal */}
           <div className="mt-8 pt-8 border-t border-gray-100">
-            <p className="text-sm text-gray-500 mb-4">Ils nous font confiance</p>
+            <p className="text-sm text-gray-500 mb-4">They trust us</p>
             <div className="flex justify-center items-center gap-8 opacity-60">
               <div className="text-2xl font-bold text-gray-400">MANGA+</div>
               <div className="text-2xl font-bold text-gray-400">WEBTOON</div>

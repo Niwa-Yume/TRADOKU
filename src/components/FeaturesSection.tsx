@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Upload, MousePointer, Eye, Bot, CheckCircle, Share2 } from "lucide-react";
 
@@ -7,37 +6,37 @@ const FeaturesSection = () => {
     {
       icon: <Upload className="h-8 w-8 text-purple-600" />,
       title: "Upload PDF",
-      description: "Importez vos chapitres de mangas et webtoons en format PDF en quelques clics",
+      description: "Import your manga and webtoon chapters in PDF format in just a few clicks",
       emoji: "📁"
     },
     {
       icon: <MousePointer className="h-8 w-8 text-pink-600" />,
-      title: "Annotation manuelle",
-      description: "Délimitez précisément chaque bulle de texte avec notre outil de sélection intuitive",
+      title: "Manual annotation",
+      description: "Precisely delimit each speech bubble with our intuitive selection tool",
       emoji: "🎯"
     },
     {
       icon: <Eye className="h-8 w-8 text-blue-600" />,
-      title: "OCR avancé",
-      description: "Extraction automatique du texte des bulles grâce à notre technologie de reconnaissance",
+      title: "Advanced OCR",
+      description: "Automatically extract text from bubbles thanks to our recognition technology",
       emoji: "👁️"
     },
     {
       icon: <Bot className="h-8 w-8 text-green-600" />,
-      title: "IA de traduction",
-      description: "Traduction automatique intelligente pré-remplie pour vous assister",
+      title: "AI translation",
+      description: "Smart automatic translation pre-filled to assist you",
       emoji: "🤖"
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-orange-600" />,
-      title: "Validation communautaire",
-      description: "Chaque traduction est vérifiée et validée par la communauté",
+      title: "Community validation",
+      description: "Each translation is checked and validated by the community",
       emoji: "✅"
     },
     {
       icon: <Share2 className="h-8 w-8 text-indigo-600" />,
-      title: "Mode lecture",
-      description: "Visualisez le résultat final avec un mode lecture comparatif",
+      title: "Reading mode",
+      description: "View the final result with a comparative reading mode",
       emoji: "📚"
     }
   ];
@@ -48,13 +47,12 @@ const FeaturesSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Fonctionnalités principales
+              Main features
             </span>
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez tous les outils qui font de <span className="text-purple-600 font-semibold">TRADOKU</span> la plateforme de référence 
-            pour la traduction collaborative
+            Discover all the tools that make <span className="text-purple-600 font-semibold">TRADOKU</span> the reference platform for collaborative translation
           </p>
         </div>
 
@@ -88,8 +86,8 @@ const FeaturesSection = () => {
 
         <div className="text-center mt-16">
           <div className="inline-block bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <p className="text-lg font-semibold text-gray-800 mb-2">Prêt à commencer ?</p>
-            <p className="text-gray-600">Rejoignez notre communauté de traducteurs passionnés !</p>
+            <p className="text-lg font-semibold text-gray-800 mb-2">Ready to get started?</p>
+            <p className="text-gray-600">Join our community of passionate translators!</p>
           </div>
         </div>
       </div>

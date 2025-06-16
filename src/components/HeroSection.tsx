@@ -20,18 +20,22 @@ const HeroSection = () => {
             </h1>
             
             <p className="text-2xl md:text-3xl text-gray-600 mb-8 font-light">
-              Plateforme communautaire de traduction
+              Community-based translation platform
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-8 text-lg text-gray-600 mb-12">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">📚</span>
-                <span className="font-medium">Mangas</span>
+                <span className="text-2xl">
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="Books" width="25" height="25" />
+                </span>
+                <span className="font-medium">Webtoon</span>
               </div>
               <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl">🎨</span>
-                <span className="font-medium">Webtoons</span>
+                <span className="text-2xl">
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Map%20of%20Japan.png" alt="Map of Japan" width="25" height="25" />
+                </span>
+                <span className="font-medium">Mangas</span>
               </div>
               <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
               <div className="flex items-center gap-2">
@@ -44,9 +48,7 @@ const HeroSection = () => {
           <div className="text-lg text-gray-700 mb-16 max-w-3xl mx-auto leading-relaxed">
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-100 shadow-sm">
               <p>
-                Transformez vos mangas et webtoons préférés grâce à notre plateforme collaborative. 
-                Chaque page est annotée, les bulles traduites avec l'aide de l'IA, 
-                puis validées par notre communauté passionnée.
+                Translate your favorite mangas and webtoons on our collaborative platform. Each page is annotated, the speech bubbles translated with the help of AI, then validated by our passionate community.
               </p>
             </div>
           </div>
@@ -58,7 +60,7 @@ const HeroSection = () => {
               className="text-lg px-8 py-6 bg-purple-600 hover:bg-purple-700 text-white rounded-xl hover-lift smooth-transition"
             >
               <span className="mr-2">🚀</span>
-              Commencer à traduire
+              Start translating
             </Button>
             
             <Button 
@@ -67,7 +69,7 @@ const HeroSection = () => {
               className="text-lg px-8 py-6 border-2 border-gray-200 hover:border-purple-300 bg-white hover:bg-purple-50 text-gray-700 rounded-xl hover-lift smooth-transition"
             >
               <span className="mr-2">📖</span>
-              Explorer les projets
+              Explore translations
             </Button>
           </div>
 
@@ -77,17 +79,17 @@ const HeroSection = () => {
               {
                 icon: <FileText className="h-8 w-8 text-purple-600" />,
                 title: "Upload PDF",
-                subtitle: "Simple & rapide"
+                subtitle: "Simple & fast"
               },
               {
                 icon: <Users className="h-8 w-8 text-pink-600" />,
-                title: "Communauté",
+                title: "Community",
                 subtitle: "Collaborative"
               },
               {
                 icon: <Zap className="h-8 w-8 text-blue-600" />,
-                title: "IA Intégrée",
-                subtitle: "Traduction assistée"
+                title: "Integrated AI",
+                subtitle: "Assisted translation"
               }
             ].map((stat, index) => (
               <div 
