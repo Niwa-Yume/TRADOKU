@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Upload, MousePointer, Eye, Bot, CheckCircle, Share2 } from "lucide-react";
 
 const FeaturesSection = () => {
@@ -36,53 +35,58 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section id="features" className="py-20 px-4 bg-gray-50">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+    <section id="features" className="relative py-32 px-4 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 overflow-hidden">
+      {/* Background animated shapes */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0">
+        <svg className="w-full h-full animate-pulse-slow" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="feat2" cx="50%" cy="50%" r="80%">
+              <stop offset="0%" stopColor="#f0abfc" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <ellipse cx="320" cy="80" rx="120" ry="80" fill="url(#feat2)" />
+          <ellipse cx="80" cy="320" rx="100" ry="60" fill="url(#feat2)" />
+        </svg>
+      </div>
+      <div className="container mx-auto relative z-10">
+        <div className="text-center mb-24">
+          <h2 className="text-5xl md:text-6xl font-black mb-8 tracking-tight drop-shadow-xl">
+            <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 bg-clip-text text-transparent animate-gradient-x">
               Main features
             </span>
           </h2>
-          
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover all the tools that make <span className="text-purple-600 font-semibold">TRADOKU</span> the reference platform for collaborative translation
+          <p className="text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed">
+            Discover the unique tools that make <span className="text-purple-600 font-semibold">TRADOKU</span> the next-gen platform for manga translation.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-12 mb-24">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="border-0 shadow-sm bg-white hover:shadow-lg hover-lift smooth-transition"
+            <div
+              key={index}
+              className="relative w-full sm:w-[340px] bg-white/90 backdrop-blur-lg rounded-[2.5rem] p-10 shadow-2xl border-0 group overflow-hidden flex flex-col items-center text-center hover:scale-[1.04] hover:-rotate-1 transition-all duration-300"
+              style={{ minHeight: 320 }}
             >
-              <CardHeader className="text-center pb-4">
-                <div className="flex justify-center items-center mb-4 relative">
-                  <div className="p-3 bg-gray-50 rounded-xl">
-                    {feature.icon}
-                  </div>
-                  {/* Emoji supprimé */}
+              <div className="absolute -top-10 -left-10 w-32 h-32 rounded-full blur-2xl opacity-20 bg-gradient-to-br from-purple-200 via-pink-200 to-orange-200"></div>
+              <div className="relative z-10 flex flex-col items-center mb-6">
+                <div className="mb-5 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-purple-100 via-pink-100 to-orange-100 shadow-lg border-4 border-white">
+                  {feature.icon}
                 </div>
-                
-                <CardTitle className="text-xl font-bold text-gray-800">
+                <div className="text-2xl font-extrabold text-gray-900 mb-2 tracking-tight drop-shadow-sm uppercase letter-spacing-wide">
                   {feature.title}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent>
-                <CardDescription className="text-center text-gray-600 leading-relaxed">
+                </div>
+                <div className="text-lg text-gray-600 leading-relaxed max-w-xs mx-auto font-normal">
                   {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-
-        <div className="text-center mt-16">
-          <div className="inline-block bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <p className="text-lg font-semibold text-gray-800 mb-2">Ready to get started?</p>
-            <p className="text-gray-600">Join our community of passionate translators!</p>
-          </div>
+        <div className="flex justify-center mt-20">
+          <a href="#" className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-14 py-5 rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-3xl text-xl tracking-wide">
+            <span className="inline-block animate-bounce-x">✨</span>
+            Get started
+          </a>
         </div>
       </div>
     </section>

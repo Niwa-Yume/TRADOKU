@@ -116,10 +116,7 @@ const TranslatePage = () => {
               <Label>Upload PDF</Label>
               <div className="mt-2">
                 <FileUpload
-                  accept="application/pdf"
-                  maxFiles={1}
-                  onChange={files => handleFileChange(files?.[0])}
-                  value={pdfFile ? [pdfFile] : []}
+
                 />
               </div>
               <div className="mt-4 text-sm text-gray-700 min-h-[24px]">
