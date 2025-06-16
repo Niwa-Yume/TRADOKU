@@ -6,38 +6,32 @@ const FeaturesSection = () => {
     {
       icon: <Upload className="h-8 w-8 text-purple-600" />,
       title: "Upload PDF",
-      description: "Import your manga and webtoon chapters in PDF format in just a few clicks",
-      emoji: "📁"
+      description: "Import your manga and webtoon chapters in PDF format in just a few clicks"
     },
     {
       icon: <MousePointer className="h-8 w-8 text-pink-600" />,
       title: "Manual annotation",
-      description: "Precisely delimit each speech bubble with our intuitive selection tool",
-      emoji: "🎯"
+      description: "Precisely delimit each speech bubble with our intuitive selection tool"
     },
     {
       icon: <Eye className="h-8 w-8 text-blue-600" />,
       title: "Advanced OCR",
-      description: "Automatically extract text from bubbles thanks to our recognition technology",
-      emoji: "👁️"
+      description: "Automatically extract text from bubbles thanks to our recognition technology"
     },
     {
       icon: <Bot className="h-8 w-8 text-green-600" />,
       title: "AI translation",
-      description: "Smart automatic translation pre-filled to assist you",
-      emoji: "🤖"
+      description: "Smart automatic translation pre-filled to assist you"
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-orange-600" />,
       title: "Community validation",
-      description: "Each translation is checked and validated by the community",
-      emoji: "✅"
+      description: "Each translation is checked and validated by the community"
     },
     {
       icon: <Share2 className="h-8 w-8 text-indigo-600" />,
       title: "Reading mode",
-      description: "View the final result with a comparative reading mode",
-      emoji: "📚"
+      description: "View the final result with a comparative reading mode"
     }
   ];
 
@@ -67,7 +61,7 @@ const FeaturesSection = () => {
                   <div className="p-3 bg-gray-50 rounded-xl">
                     {feature.icon}
                   </div>
-                  <span className="absolute -top-2 -right-2 text-2xl">{feature.emoji}</span>
+                  {/* Emoji supprimé */}
                 </div>
                 
                 <CardTitle className="text-xl font-bold text-gray-800">
