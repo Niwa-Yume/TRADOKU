@@ -29,6 +29,29 @@ const LANGUAGES = [
   // ...ajoute d'autres langues si besoin
 ];
 
+const MANGA_LIST = [
+  "Solo Leveling",
+  "One Piece",
+  "Jujutsu Kaisen",
+  "Tower of God",
+  "Demon Slayer",
+  "My Hero Academia",
+  "Attack on Titan",
+  "Noblesse",
+  "The God of High School",
+  "Spy x Family",
+  "Blue Lock",
+  "Chainsaw Man",
+  "Lookism",
+  "Wind Breaker",
+  "Omniscient Reader",
+  "Eleceed",
+  "Kaiju No. 8",
+  "Mashle",
+  "Kingdom",
+  "Black Clover"
+];
+
 const TranslatePage = () => {
   const [baseLang, setBaseLang] = useState<string>("ja");
   const [targetLang, setTargetLang] = useState<string>("en");
@@ -36,6 +59,8 @@ const TranslatePage = () => {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [loadingPdf, setLoadingPdf] = useState(false);
+  const [search, setSearch] = useState("");
+  const [selectedManga, setSelectedManga] = useState<string | null>(null);
 
   const handleFileChange = async (file?: File) => {
     setPdfFile(file || null);
@@ -54,6 +79,8 @@ const TranslatePage = () => {
     // ...
   };
 
+  const filteredManga = MANGA_LIST.filter(m => m.toLowerCase().includes(search.toLowerCase()));
+
   return (
     <>
       <Header />
@@ -66,6 +93,47 @@ const TranslatePage = () => {
             <li>Choose the correct source and target language.</li>
             <li>Only PDF files are accepted.</li>
           </ul>
+        </div>
+        {/* Barre de recherche manga centrée */}
+        <div className="flex flex-col items-center mb-10">
+          <Input
+            type="text"
+            placeholder="Search for a manga or webtoon..."
+            value={search}
+            onChange={e => {
+              setSearch(e.target.value);
+              setSelectedManga(null);
+            }}
+            className="w-full max-w-md text-lg px-6 py-4 rounded-2xl shadow-md border-2 border-purple-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition mb-2"
+          />
+          {/* Liste des résultats */}
+          {search && filteredManga.length > 0 && (
+            <div className="w-full max-w-md bg-white rounded-xl shadow-lg border mt-2 z-10">
+              {filteredManga.map(manga => (
+                <button
+                  key={manga}
+                  className={`w-full text-left px-6 py-3 hover:bg-purple-50 transition font-medium ${selectedManga === manga ? 'bg-purple-100 text-purple-700' : ''}`}
+                  onClick={() => setSelectedManga(manga)}
+                  type="button"
+                >
+                  {manga}
+                </button>
+              ))}
+            </div>
+          )}
+          {/* Affichage du manga sélectionné */}
+          {selectedManga && (
+            <div className="mt-4 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-100 via-pink-100 to-orange-100 text-purple-700 font-bold text-lg shadow border border-purple-200 flex items-center gap-2">
+              <span>Selected:</span> <span className="truncate max-w-[200px]">{selectedManga}</span>
+              <button
+                className="ml-2 text-xs text-purple-500 hover:text-pink-500 font-bold px-2 py-1 rounded transition"
+                onClick={() => setSelectedManga(null)}
+                type="button"
+              >
+                Clear
+              </button>
+            </div>
+          )}
         </div>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
