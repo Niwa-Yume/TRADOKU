@@ -104,16 +104,6 @@ const CTASection = () => {
               Discover projects
             </Button>
           </div>
-
-          {/* Trust Signal */}
-          <div className="mt-8 pt-8 border-t border-gray-100">
-            <p className="text-sm text-gray-500 mb-4">They trust us</p>
-            <div className="flex justify-center items-center gap-8 opacity-60">
-              <div className="text-2xl font-bold text-gray-400">MANGA+</div>
-              <div className="text-2xl font-bold text-gray-400">WEBTOON</div>
-              <div className="text-2xl font-bold text-gray-400">OTAKU</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

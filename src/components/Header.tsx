@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Search, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,9 +59,18 @@ const Header = () => {
               className="pl-10 w-64 border-gray-200 focus:border-purple-500"
             />
           </div>
-          <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6">
+          <Link
+            to="/login"
+            className="text-gray-700 hover:text-purple-600 transition-colors p-2 rounded"
+          >
             Login
-          </Button>
+          </Link>
+          <Link
+            to="/register"
+            className="text-purple-600 border border-purple-600 rounded px-4 py-1 ml-2 hover:bg-purple-50 transition-colors font-medium"
+          >
+            Sign Up
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -94,10 +104,19 @@ const Header = () => {
                   {item.text}
                 </a>
               ))}
+              <Link
+                to="/login"
+                className="text-gray-700 hover:text-purple-600 transition-colors p-2 rounded"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="text-purple-600 border border-purple-600 rounded px-4 py-1 mt-2 hover:bg-purple-50 transition-colors font-medium"
+              >
+                Sign Up
+              </Link>
             </nav>
-            <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-              Login
-            </Button>
           </div>
         </div>
       )}
