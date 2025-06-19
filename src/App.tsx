@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
-import TranslatePage from "@/pages/TranslatePage";
+import TranslatePage from "@/pages/UploadPage";
 
 const queryClient = new QueryClient();
 

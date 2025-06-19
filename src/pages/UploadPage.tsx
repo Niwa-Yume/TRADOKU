@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { uploadPdf } from "@/services/uploadPdf";
 
 // Pour lire le nombre de pages d'un PDF côté client
 const getPdfPageCount = async (file: File): Promise<number | null> => {
@@ -102,18 +104,20 @@ const TranslatePage = () => {
             value={search}
             onChange={e => {
               setSearch(e.target.value);
-              setSelectedManga(null);
             }}
             className="w-full max-w-md text-lg px-6 py-4 rounded-2xl shadow-md border-2 border-purple-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition mb-2"
           />
           {/* Liste des résultats */}
-          {search && filteredManga.length > 0 && (
+          {search && filteredManga.length > 0 && search != selectedManga && (
             <div className="w-full max-w-md bg-white rounded-xl shadow-lg border mt-2 z-10">
               {filteredManga.map(manga => (
                 <button
                   key={manga}
                   className={`w-full text-left px-6 py-3 hover:bg-purple-50 transition font-medium ${selectedManga === manga ? 'bg-purple-100 text-purple-700' : ''}`}
-                  onClick={() => setSelectedManga(manga)}
+                  onClick={() => {
+                    setSelectedManga(manga);
+                    setSearch(manga); 
+                  }}
                   type="button"
                 >
                   {manga}
@@ -184,7 +188,7 @@ const TranslatePage = () => {
               <Label>Upload PDF</Label>
               <div className="mt-2">
                 <FileUpload
-
+                  
                 />
               </div>
               <div className="mt-4 text-sm text-gray-700 min-h-[24px]">
@@ -205,12 +209,19 @@ const TranslatePage = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <Button type="submit" className="w-full md:w-auto">
+            <Button 
+              type="submit" 
+              className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white text-xl px-10 py-6 rounded-xl font-bold shadow-md hover:scale-105 transition-transform"
+              onClick={() => {
+                
+              }}
+              >
               Add
             </Button>
           </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

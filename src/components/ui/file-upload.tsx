@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
+import { X } from "lucide-react";
 
 const mainVariant = {
   initial: {
@@ -62,6 +63,7 @@ export const FileUpload = ({
           ref={fileInputRef}
           id="file-upload-handle"
           type="file"
+          accept="application/pdf"
           onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
           className="hidden"
         />
@@ -86,6 +88,19 @@ export const FileUpload = ({
                     "shadow-sm"
                   )}
                 >
+                  {/* X button to remove file */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFiles(files.filter((_, i) => i !== idx));
+                      onChange && onChange(files.filter((_, i) => i !== idx));
+                    }}
+                    className="absolute top-0 right-0 z-50 text-gray-700 rounded-full p-1 w-7 h-7 flex items-center justify-center transition-colors bg-transparent hover:text-red-600"
+                    aria-label="Remove file"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
                   <div className="flex justify-between w-full items-center gap-4">
                     <motion.p
                       initial={{ opacity: 0 }}

@@ -22,12 +22,12 @@ const HeroSection = () => {
         <div className="max-w-5xl mx-auto">
           {/* Hero Title modernisé */}
           <div className="fade-in mb-12">
-            <h1 className="text-7xl md:text-8xl font-black mb-8 tracking-tight drop-shadow-2xl select-none">
+            <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tight drop-shadow-2xl select-none break-words leading-tight">
               <span className="block bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 bg-clip-text text-transparent animate-gradient-x">
                 TRADOKU
               </span>
             </h1>
-            <p className="text-3xl md:text-4xl text-gray-700 mb-10 font-light tracking-tight">
+            <p className="text-2xl md:text-4xl text-gray-700 mb-10 font-light tracking-tight">
               The next-gen collaborative manga translation platform
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8 text-xl text-gray-700 mb-14">
