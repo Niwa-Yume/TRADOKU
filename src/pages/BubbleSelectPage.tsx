@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { X } from "lucide-react";
+import { X, Check } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
@@ -27,6 +27,9 @@ const BubbleSelect = () => {
     const pdfWrapperRef = useRef<HTMLDivElement>(null);
     const [pageWidth, setPageWidth] = useState<number>(500);
 
+    // Function to resize the PDF page width based on the wrapper size
+    // Ensures the PDF is responsive and fits within the wrapper as well as to avoid the zones
+    // from moving from their original position
     useEffect(() => {
         const updateWidth = () => {
             if (pdfWrapperRef.current) {
@@ -46,13 +49,15 @@ const BubbleSelect = () => {
         setZones([]); // Reset zones when loading a new PDF
     };
 
-    const  changePage = (offset: number) => {
+    // Change page with bounds checking
+    const changePage = (offset: number) => {
         setPageNumber((prevPageNumber) => {
             const newPageNumber = prevPageNumber + offset;
             return Math.max(1, Math.min(newPageNumber, numPages));
         });
     }
 
+    // Handlers for pagination
     const previousPage = () => changePage(-1);
     const nextPage = () => changePage(1);
     
@@ -176,7 +181,9 @@ const BubbleSelect = () => {
                             boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
                             pointerEvents: "auto", // Allow pointer events for the button
                         }}
-                        onClick={() => handleRemoveZone(z.id)}
+                        onClick={e => { e.stopPropagation(); handleRemoveZone(z.id); }}
+                        onMouseDown={e => e.stopPropagation()}
+                        onTouchStart={e => e.stopPropagation()}
                         title="Remove zone"
                     >
                         <X size={16} className="m-auto" />
@@ -200,22 +207,69 @@ const BubbleSelect = () => {
                     zIndex: 1,
                 }}
             >
-                <div style={{ position: "absolute", left: 0, right: 0, bottom: -40, display: "flex", justifyContent: "center", gap: 8 }}>
+                <div style={{ position: "absolute", left: 0, right: 0, bottom: -40, display: "flex", justifyContent: "center", gap: 20 }}>
                     <button
-                        className="px-3 py-1 bg-blue-500 text-white rounded"
+                        className="px-4 pb-1 pr-3 bg-green-500 text-white rounded"
                         onClick={handleConfirmZone}
                     >
-                        Confirm
+                        <Check size={20} className="inline mr-1" />
                     </button>
                     <button
-                        className="px-3 py-1 bg-gray-300 text-black rounded"
+                        className="px-4 pb-1 pr-3 bg-red-500 text-white rounded"
                         onClick={() => handleRemoveZone()}
                     >
-                        Remove
+                        <X size={20} className="inline mr-1" />
                     </button>
                 </div>
             </div>
         );
+    };
+
+    // Touch handlers for mobile zone selection
+    const handleTouchStart = (e: React.TouchEvent) => {
+        if (!selecting || currentZone) return;
+        const rect = pdfWrapperRef.current!.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        setStartPoint({ x, y });
+        setCurrentZone({
+            id: "current",
+            page: pageNumber,
+            x,
+            y,
+            width: 0,
+            height: 0,
+            confirmed: false,
+        });
+    };
+
+    // Touch move to update zone
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (!selecting || !startPoint || !currentZone) return;
+        const rect = pdfWrapperRef.current!.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        const width = Math.abs(x - startPoint.x);
+        const height = Math.abs(y - startPoint.y);
+        const zoneX = Math.min(x, startPoint.x);
+        const zoneY = Math.min(y, startPoint.y);
+        setCurrentZone({
+            id: "current",
+            page: pageNumber,
+            x: zoneX + width / 2,
+            y: zoneY + height / 2,
+            width,
+            height,
+            confirmed: false,
+        });
+    };
+
+    // Touch end to finish zone
+    const handleTouchEnd = () => {
+        if (!selecting || !currentZone) return;
+        setStartPoint(null);
     };
 
     return (
@@ -237,14 +291,21 @@ const BubbleSelect = () => {
                             ref={pdfWrapperRef}
                             style={{
                                 position: "relative",
-                                width: "100%",
+                                width: "100%", // Responsive width
+                                maxWidth: 500, // Match max PDF width
                                 margin: "0 auto",
                                 cursor: selecting && !currentZone ? "crosshair" : "default",
                                 background: "#fff",
+                                overflowX: "auto", // Prevent horizontal overflow
+                                boxSizing: "border-box",
                             }}
                             onMouseDown={handleMouseDown}
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                            className="pdfWrapper"
                         >
                             <Document
                               file={pdfUrl}
@@ -265,7 +326,7 @@ const BubbleSelect = () => {
                             {renderZones()}
                             {renderCurrentZone()}
                             {numPages && (
-                              <div className="flex items-center justify-between mt-4 w-full max-w-3xl">
+                              <div className="flex items-center justify-between mt-4 w-full max-w-3xl px-4">
                                 <button 
                                   type="button" 
                                   disabled={pageNumber <= 1} 

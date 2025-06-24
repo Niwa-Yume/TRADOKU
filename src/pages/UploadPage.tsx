@@ -188,7 +188,7 @@ const TranslatePage = () => {
               <Label>Upload PDF</Label>
               <div className="mt-2">
                 <FileUpload
-                  
+                  onChange={files => handleFileChange(files[0])}
                 />
               </div>
               <div className="mt-4 text-sm text-gray-700 min-h-[24px]">

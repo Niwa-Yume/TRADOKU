@@ -95,6 +95,7 @@ export const FileUpload = ({
                       e.stopPropagation();
                       setFiles(files.filter((_, i) => i !== idx));
                       onChange && onChange(files.filter((_, i) => i !== idx));
+                      if (fileInputRef.current) fileInputRef.current.value = ""; // Clear file input so same file can be reselected
                     }}
                     className="absolute top-0 right-0 z-50 text-gray-700 rounded-full p-1 w-7 h-7 flex items-center justify-center transition-colors bg-transparent hover:text-red-600"
                     aria-label="Remove file"
