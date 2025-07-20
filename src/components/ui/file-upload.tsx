@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
 import { X } from "lucide-react";
+import {Document} from "react-pdf"
 
 const mainVariant = {
   initial: {
@@ -26,17 +27,25 @@ const secondaryVariant = {
   },
 };
 
+
+
 export const FileUpload = ({
   onChange,
 }: {
   onChange?: (files: File[]) => void;
+  onPageCountChange?: (count: number | null) => void;
 }) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [pageCount, setPageCount] = useState<number | null>(null);
 
   const handleFileChange = (newFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    onChange && onChange(newFiles);
+    // Only keep the first file
+    const file = newFiles[0] ? [newFiles[0]] : [];
+    setFiles(file);
+    if (fileInputRef.current) fileInputRef.current.value = ""; // Clear file input
+    onChange && onChange(file);
+    setPageCount(null); // Reset page count when a new file is selected
   };
 
   const handleClick = () => {
@@ -54,6 +63,7 @@ export const FileUpload = ({
 
   return (
     <div className="w-full" {...getRootProps()}>
+      <Document file={files[0]} onLoadSuccess={({ numPages }) => setPageCount(numPages)} className="hidden" />
       <motion.div
         onClick={handleClick}
         whileHover="animate"
@@ -84,7 +94,7 @@ export const FileUpload = ({
                   key={"file" + idx}
                   layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
                   className={cn(
-                    "relative overflow-hidden z-40 bg-white dark:bg-neutral-900 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
+                    "relative overflow-hidden z-40 bg-white dark:bg-neutral-900 flex flex-col items-start justify-start md:h-25 p-4 mt-4 w-full mx-auto rounded-md",
                     "shadow-sm"
                   )}
                 >
@@ -93,9 +103,10 @@ export const FileUpload = ({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setFiles(files.filter((_, i) => i !== idx));
-                      onChange && onChange(files.filter((_, i) => i !== idx));
+                      setFiles([]);
+                      onChange && onChange([]);
                       if (fileInputRef.current) fileInputRef.current.value = ""; // Clear file input so same file can be reselected
+                      setPageCount(null);
                     }}
                     className="absolute top-0 right-0 z-50 text-gray-700 rounded-full p-1 w-7 h-7 flex items-center justify-center transition-colors bg-transparent hover:text-red-600"
                     aria-label="Remove file"
@@ -138,6 +149,17 @@ export const FileUpload = ({
                     >
                       modified{" "}
                       {new Date(file.lastModified).toLocaleDateString()}
+                    </motion.p>
+                  </div>
+                  <div>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      layout
+                      className="text-sm text-neutral-500 dark:text-neutral-400 mt-2"
+                    >
+                      Number of pages: {" "}
+                      {pageCount}
                     </motion.p>
                   </div>
                 </motion.div>

@@ -9,19 +9,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { uploadPdf } from "@/services/uploadPdf";
 
-// Pour lire le nombre de pages d'un PDF côté client
-const getPdfPageCount = async (file: File): Promise<number | null> => {
-  try {
-    const pdfjsLib = await import("pdfjs-dist");
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
-    const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-    return pdf.numPages;
-  } catch {
-    return null;
-  }
-};
-
 const LANGUAGES = [
   { code: "ja", label: "Japanese" },
   { code: "ko", label: "Korean" },
@@ -59,19 +46,24 @@ const TranslatePage = () => {
   const [targetLang, setTargetLang] = useState<string>("en");
   const [chapter, setChapter] = useState<string>("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
-  const [pageCount, setPageCount] = useState<number | null>(null);
   const [loadingPdf, setLoadingPdf] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedManga, setSelectedManga] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = async (file?: File) => {
     setPdfFile(file || null);
-    setPageCount(null);
+    setError(null);
     if (file) {
       setLoadingPdf(true);
-      const count = await getPdfPageCount(file);
-      setPageCount(count);
       setLoadingPdf(false);
+    } else {
+      setError("Please upload a valid PDF file.");
+    }
+    if (file && file.type !== "application/pdf") {
+      setError("Only PDF files are accepted.");
+      setPdfFile(null);
+      return;
     }
   };
 
@@ -191,19 +183,14 @@ const TranslatePage = () => {
                   onChange={files => handleFileChange(files[0])}
                 />
               </div>
-              <div className="mt-4 text-sm text-gray-700 min-h-[24px]">
+              <div className="text-sm text-gray-700 min-h-[24px] flex items-center justify-center">
                 {loadingPdf && (
                   <span className="flex items-center gap-2 text-purple-600">
                     <Loader2 className="animate-spin w-4 h-4" /> Loading PDF...
                   </span>
                 )}
-                {!loadingPdf && pageCount !== null && (
-                  <span>
-                    Number of pages: <span className="font-semibold">{pageCount}</span>
-                  </span>
-                )}
-                {!loadingPdf && pdfFile && pageCount === null && (
-                  <span className="text-red-600">Unable to read PDF page count.</span>
+                {!loadingPdf && !pdfFile && error && (
+                  <span className="text-red-600">{error}</span>
                 )}
               </div>
             </div>
