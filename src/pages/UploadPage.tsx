@@ -18,37 +18,14 @@ const LANGUAGES = [
   // ...ajoute d'autres langues si besoin
 ];
 
-const MANGA_LIST = [
-  "Solo Leveling",
-  "One Piece",
-  "Jujutsu Kaisen",
-  "Tower of God",
-  "Demon Slayer",
-  "My Hero Academia",
-  "Attack on Titan",
-  "Noblesse",
-  "The God of High School",
-  "Spy x Family",
-  "Blue Lock",
-  "Chainsaw Man",
-  "Lookism",
-  "Wind Breaker",
-  "Omniscient Reader",
-  "Eleceed",
-  "Kaiju No. 8",
-  "Mashle",
-  "Kingdom",
-  "Black Clover"
-];
 
 const TranslatePage = () => {
   const [baseLang, setBaseLang] = useState<string>("ja");
   const [targetLang, setTargetLang] = useState<string>("en");
   const [chapter, setChapter] = useState<string>("");
+  const [mangaTitle, setMangaTitle] = useState<string>("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [loadingPdf, setLoadingPdf] = useState(false);
-  const [search, setSearch] = useState("");
-  const [selectedManga, setSelectedManga] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = async (file?: File) => {
@@ -73,68 +50,36 @@ const TranslatePage = () => {
     // ...
   };
 
-  const filteredManga = MANGA_LIST.filter(m => m.toLowerCase().includes(search.toLowerCase()));
-
   return (
     <>
       <Header />
       <div className="max-w-3xl mx-auto py-12 px-4 mt-20">
-        <h1 className="text-3xl font-bold mb-4">Start a New Translation</h1>
+        <h1 className="text-3xl font-bold mb-4">Start a New Translation Project</h1>
         <div className="mb-6 p-4 bg-purple-50 border-l-4 border-purple-400 rounded">
           <ul className="list-disc pl-6 text-sm text-gray-700 space-y-1">
             <li>All fields are required to start a translation.</li>
-            <li>The PDF must contain only the pages of the chapter to translate.</li>
+            <li>Upload your own PDF file containing the manga/webtoon chapter to translate.</li>
             <li>Choose the correct source and target language.</li>
             <li>Only PDF files are accepted.</li>
           </ul>
         </div>
-        {/* Barre de recherche manga centrée */}
-        <div className="flex flex-col items-center mb-10">
-          <Input
-            type="text"
-            placeholder="Search for a manga or webtoon..."
-            value={search}
-            onChange={e => {
-              setSearch(e.target.value);
-            }}
-            className="w-full max-w-md text-lg px-6 py-4 rounded-2xl shadow-md border-2 border-purple-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition mb-2"
-          />
-          {/* Liste des résultats */}
-          {search && filteredManga.length > 0 && search != selectedManga && (
-            <div className="w-full max-w-md bg-white rounded-xl shadow-lg border mt-2 z-10">
-              {filteredManga.map(manga => (
-                <button
-                  key={manga}
-                  className={`w-full text-left px-6 py-3 hover:bg-purple-50 transition font-medium ${selectedManga === manga ? 'bg-purple-100 text-purple-700' : ''}`}
-                  onClick={() => {
-                    setSelectedManga(manga);
-                    setSearch(manga); 
-                  }}
-                  type="button"
-                >
-                  {manga}
-                </button>
-              ))}
-            </div>
-          )}
-          {/* Affichage du manga sélectionné */}
-          {selectedManga && (
-            <div className="mt-4 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-100 via-pink-100 to-orange-100 text-purple-700 font-bold text-lg shadow border border-purple-200 flex items-center gap-2">
-              <span>Selected:</span> <span className="truncate max-w-[200px]">{selectedManga}</span>
-              <button
-                className="ml-2 text-xs text-purple-500 hover:text-pink-500 font-bold px-2 py-1 rounded transition"
-                onClick={() => setSelectedManga(null)}
-                type="button"
-              >
-                Clear
-              </button>
-            </div>
-          )}
-        </div>
+
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             {/* Colonne 1 */}
             <div className="space-y-6">
+              <div>
+                <Label htmlFor="manga-title">Manga/Webtoon Title</Label>
+                <Input
+                  id="manga-title"
+                  type="text"
+                  placeholder="Enter the title of your manga/webtoon"
+                  value={mangaTitle}
+                  onChange={e => setMangaTitle(e.target.value)}
+                  required
+                  className="mt-1"
+                />
+              </div>
               <div>
                 <Label htmlFor="base-lang">Source language</Label>
                 <Select value={baseLang} onValueChange={setBaseLang}>
@@ -177,7 +122,7 @@ const TranslatePage = () => {
             </div>
             {/* Colonne 2 */}
             <div>
-              <Label>Upload PDF</Label>
+              <Label>Upload PDF Chapter</Label>
               <div className="mt-2">
                 <FileUpload
                   onChange={files => handleFileChange(files[0])}
@@ -203,7 +148,7 @@ const TranslatePage = () => {
                 
               }}
               >
-              Add
+              Start Translation Project
             </Button>
           </div>
         </form>

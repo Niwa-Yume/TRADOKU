@@ -29,7 +29,7 @@ const CTASection = () => {
               </span>
             </h2>
             <p className="text-2xl text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium">
-              Over 10,000 translators already trust us to share their passion for manga with the world.
+              Over 10,000 translators already trust our tools to create professional manga translations.
             </p>
           </div>
 

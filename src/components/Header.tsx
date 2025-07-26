@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Search, BookOpen } from "lucide-react";
+import { Menu, X, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -53,15 +52,8 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Search and Login modernisé */}
+        {/* Login buttons modernisé */}
         <div className="hidden md:flex items-center gap-3 lg:gap-5">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
-            <Input
-              placeholder="Search manga..."
-              className="pl-12 w-40 lg:w-64 border-2 border-purple-200 bg-white/70 rounded-xl shadow-inner focus:ring-2 focus:ring-purple-600 transition-all"
-            />
-          </div>
           <Link
             to="/login"
             className="text-gray-700 hover:text-purple-600 transition-colors px-2 lg:px-3 py-1 rounded-xl font-medium"
@@ -89,10 +81,6 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden border-t bg-white/95 backdrop-blur-xl shadow-xl animate-fade-in-down">
           <div className="container py-4 sm:py-6 space-y-4 sm:space-y-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
-              <Input placeholder="Search manga..." className="pl-12 w-full border-0 bg-white/80 rounded-xl shadow-inner focus:ring-2 focus:ring-purple-300 transition-all" />
-            </div>
             <nav className="flex flex-col gap-2 sm:gap-3 text-base sm:text-lg font-semibold">
               <Link
                 to="/"

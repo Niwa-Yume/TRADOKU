@@ -55,7 +55,7 @@ const HeroSection = () => {
           <div className="text-2xl text-gray-800 mb-20 max-w-3xl mx-auto leading-relaxed">
             <div className="bg-white/80 backdrop-blur-lg rounded-3xl p-10 border-0 shadow-xl">
               <p>
-                Translate your favorite mangas and webtoons on a platform where every page is annotated, every bubble is AI-assisted, and every translation is validated by a passionate community. Experience a seamless, creative, and social translation journey.
+                Create professional translations of your favorite mangas and webtoons with our collaborative platform. Every page is annotated, every bubble is AI-assisted, and every translation is validated by a passionate community. Export your work and publish wherever you want.
               </p>
             </div>
           </div>
@@ -73,8 +73,8 @@ const HeroSection = () => {
               size="lg" 
               className="text-xl px-12 py-6 border-2 border-gray-200 hover:border-purple-400 bg-white hover:bg-purple-50 text-gray-700 rounded-2xl font-bold shadow-md hover:scale-105 transition-all flex items-center gap-2"
             >
-              <span className="mr-2">📖</span>
-              Explore translations
+              <span className="mr-2">🛠️</span>
+              Discover our tools
             </Button>
           </div>
           {/* Stats modernisées */}
