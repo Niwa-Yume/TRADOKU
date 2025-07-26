@@ -325,7 +325,8 @@ const BubbleSelect = () => {
                             {/* Zones */}
                             {renderZones()}
                             {renderCurrentZone()}
-                            {numPages && (
+                        </div>
+                        {numPages && (
                               <div className="flex items-center justify-between mt-4 w-full max-w-3xl px-4">
                                 <button 
                                   type="button" 
@@ -350,7 +351,6 @@ const BubbleSelect = () => {
                                 </button>
                               </div>
                             )}
-                        </div>
                         {canFinish && (
                             <button className="mt-4 px-6 py-2 bg-green-600 text-white rounded">
                                 Finish
