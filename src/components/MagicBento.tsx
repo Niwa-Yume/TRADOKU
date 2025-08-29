@@ -188,27 +188,145 @@ const MagicBento = ({
     };
   }, [enableStars, enableSpotlight, enableBorderGlow, enableTilt, enableMagnetism, clickEffect, spotlightRadius, particleCount, glowColor]);
 
+  useEffect(() => {
+    // Intersection Observer pour révéler les cartes (restaure l'impression de grille disparue)
+    const root = containerRef.current;
+    if (!root) return;
+    const cards = Array.from(root.querySelectorAll('.bento-card')) as HTMLElement[];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { root: null, threshold: 0.25 });
+    cards.forEach(c => io.observe(c));
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Parallax pour forêt de bambous (bas uniquement)
+    const section = containerRef.current;
+    if (!section) return;
+    const collect = () => Array.from(section.querySelectorAll('.bamboo-element, .bamboo-silhouette')) as HTMLElement[];
+    let bambooEls = collect();
+    let ticking = false;
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (rect.height + vh)));
+      bambooEls.forEach(el => {
+        const depth = (el.dataset.depth || (el.classList.contains('bamboo-silhouette') ? 'back' : 'mid')) as 'front' | 'mid' | 'back';
+        let factor = -15; // back base plus doux
+        if (depth === 'mid') factor = -28;
+        if (depth === 'front') factor = -40;
+        if (el.classList.contains('bamboo-silhouette')) factor = -10;
+        const y = factor * progress;
+        el.style.setProperty('--py', y + 'px');
+      });
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { update(); ticking = false; });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    setTimeout(() => { bambooEls = collect(); update(); }, 50);
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
   return (
-    <section ref={containerRef} className="py-20 px-4 relative overflow-hidden">
-      {/* Background avec bambous */}
+    <section ref={containerRef} className="magic-bento-bg pt-0 pb-20 px-4 relative overflow-hidden enhanced-japanese-bg">
+      {/* Background enrichi */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50"></div>
-      <div className="absolute inset-0 opacity-10">
-        <div className="bamboo-element absolute top-10 left-[10%] h-32 opacity-60" style={{animationDelay: '0s'}}></div>
-        <div className="bamboo-element absolute top-20 right-[15%] h-24 opacity-40" style={{animationDelay: '1s'}}></div>
-        <div className="bamboo-element absolute bottom-20 left-[20%] h-28 opacity-50" style={{animationDelay: '2s'}}></div>
-        <div className="bamboo-element absolute bottom-10 right-[25%] h-20 opacity-70" style={{animationDelay: '0.5s'}}></div>
-        <div className="bamboo-element absolute top-1/2 left-[5%] h-36 opacity-30" style={{animationDelay: '1.5s'}}></div>
-        <div className="bamboo-element absolute top-1/3 right-[8%] h-22 opacity-45" style={{animationDelay: '2.5s'}}></div>
-      </div>
 
-      {/* Particules de sakura flottantes */}
+      {/* Kanji flottants pour cette section */}
+      <div className="floating-kanji" style={{top: '8%', left: '3%', fontSize: '1.8rem', color: 'rgba(147, 51, 234, 0.12)', animationDelay: '0s'}}>道</div>
+      <div className="floating-kanji" style={{top: '15%', right: '5%', fontSize: '1.4rem', color: 'rgba(236, 72, 153, 0.15)', animationDelay: '2s'}}>具</div>
+      <div className="floating-kanji" style={{top: '65%', left: '6%', fontSize: '1.6rem', color: 'rgba(59, 130, 246, 0.13)', animationDelay: '4s'}}>力</div>
+      <div className="floating-kanji" style={{top: '80%', right: '8%', fontSize: '1.3rem', color: 'rgba(34, 197, 94, 0.16)', animationDelay: '3s'}}>術</div>
+      <div className="floating-kanji" style={{top: '35%', left: '90%', fontSize: '1.7rem', color: 'rgba(251, 146, 60, 0.14)', animationDelay: '5s'}}>技</div>
+      <div className="floating-kanji" style={{top: '45%', right: '85%', fontSize: '1.5rem', color: 'rgba(168, 85, 247, 0.12)', animationDelay: '1s'}}>機</div>
+
+      {/* Forêt de bambous (bas) */}
+      {(() => {
+        const bambooLayout: Array<{
+          side: 'left' | 'right'; pos: string; h: number; depth: 'front' | 'back' | 'mid'; variant?: 'thin' | 'thick'; ss: string; amp: number; offset: string;
+        }> = [
+          { side: 'left', pos: '4%', h: 140, depth: 'back', variant: 'thin', ss: '11s', amp: 1.25, offset: '0.15s' },
+          { side: 'left', pos: '8%', h: 175, depth: 'front', variant: 'thick', ss: '12s', amp: 1.7, offset: '0.55s' },
+          { side: 'right', pos: '12%', h: 160, depth: 'mid', ss: '10.5s', amp: 1.2, offset: '0.25s' },
+          { side: 'right', pos: '20%', h: 168, depth: 'front', ss: '10.8s', amp: 1.35, offset: '0.3s' },
+          { side: 'right', pos: '22%', h: 190, depth: 'back', variant: 'thick', ss: '12.5s', amp: 1.55, offset: '0.9s' },
+          { side: 'left', pos: '25%', h: 135, depth: 'back', variant: 'thin', ss: '9.8s', amp: 1.18, offset: '0.5s' },
+          { side: 'right', pos: '30%', h: 172, depth: 'front', ss: '11.2s', amp: 1.45, offset: '0.7s' },
+          { side: 'left', pos: '75%', h: 185, depth: 'mid', variant: 'thick', ss: '10.7s', amp: 1.32, offset: '0.65s' },
+          { side: 'left', pos: '30%', h: 125, depth: 'front', variant: 'thin', ss: '9.2s', amp: 1.25, offset: '0.95s' },
+          { side: 'right', pos: '48%', h: 178, depth: 'front', ss: '11.4s', amp: 1.5, offset: '0.42s' },
+          { side: 'left', pos: '55%', h: 150, depth: 'mid', ss: '10.9s', amp: 1.28, offset: '0.33s' },
+          { side: 'right', pos: '62%', h: 165, depth: 'back', ss: '12.1s', amp: 1.22, offset: '0.74s' },
+        ];
+        const extra: typeof bambooLayout = Array.from({ length: 18 }, () => {
+          const side = Math.random() > 0.5 ? 'left' : 'right' as const;
+          const depthRand = Math.random();
+          const depth: 'front' | 'back' | 'mid' = depthRand > 0.66 ? 'front' : depthRand > 0.33 ? 'mid' : 'back';
+          return {
+            side,
+            pos: `${Math.floor(Math.random() * 88) + 4}%`,
+            h: 110 + Math.floor(Math.random() * 140), // 110 - 250
+            depth,
+            variant: Math.random() > 0.75 ? 'thick' : Math.random() > 0.5 ? 'thin' : undefined,
+            ss: `${9 + Math.random() * 5}s`,
+            amp: +(1.05 + Math.random() * 1.5).toFixed(2),
+            offset: `${(Math.random() * 1.1).toFixed(2)}s`
+          };
+        });
+        const merged = [...bambooLayout, ...extra];
+        const silhouettes = Array.from({ length: 6 }, (_, i) => {
+          const left = 5 + Math.random() * 90;
+          const height = 260 + Math.random() * 200; // silhouettes plus hautes
+          return <div key={'sil-' + i} className="bamboo-silhouette" data-depth="back" style={{ left: left + '%', height: height + 'px', ['--ss' as any]: (12 + Math.random()*6) + 's', ['--amp' as any]: (1 + Math.random()*1).toFixed(2), ['--offset' as any]: (Math.random()*1.4).toFixed(2)+'s' }} />;
+        });
+        return (
+          <div className="bamboo-forest">
+            {silhouettes}
+            {merged.map((b, i) => {
+              const style: any = {
+                height: b.h + 'px',
+                [b.side]: b.pos,
+                ['--ss']: b.ss,
+                ['--amp']: b.amp,
+                ['--offset']: b.offset
+              };
+              const cls = [
+                'bamboo-element',
+                b.variant === 'thin' ? 'bamboo-thin' : '',
+                b.variant === 'thick' ? 'bamboo-thick' : '',
+                b.h > 200 ? 'bamboo-tall' : ''
+              ].filter(Boolean).join(' ');
+              return <div key={i} className={cls} data-depth={b.depth} style={style} />;
+            })}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/70 via-white/30 to-transparent" />
+          </div>
+        );
+      })()}
+
+      {/* Particules de sakura plus subtiles */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="sakura-particle" style={{left: '15%', animationDelay: '0s'}}>🌸</div>
-        <div className="sakura-particle" style={{left: '75%', animationDelay: '3s'}}>🌸</div>
-        <div className="sakura-particle" style={{left: '45%', animationDelay: '7s'}}>🌸</div>
+        <div className="sakura-particle opacity-25" style={{left: '15%', animationDelay: '0s'}}>🌸</div>
+        <div className="sakura-particle opacity-20" style={{left: '75%', animationDelay: '3s'}}>🌸</div>
+        <div className="sakura-particle opacity-30" style={{left: '45%', animationDelay: '7s'}}>🌸</div>
+        <div className="sakura-particle opacity-15" style={{left: '85%', animationDelay: '5s'}}>🌸</div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 pt-0">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent kanji-effect" data-kanji="道">
             Outils de traduction puissants
@@ -291,8 +409,7 @@ const MagicBento = ({
         </div>
 
         {/* Éléments décoratifs japonais */}
-        <div className="absolute top-10 right-10 bamboo-element h-20 opacity-20"></div>
-        <div className="absolute bottom-10 left-10 bamboo-element h-16 opacity-20" style={{animationDelay: '1s'}}></div>
+        {/* Bambous décoratifs retirés */}
       </div>
     </section>
   );

@@ -593,361 +593,237 @@ html {
   }
 }
 
-/* Animation de vagues japonaises (hokusai inspired) */
-@keyframes hokusai-wave {
-  0% {
-    background-position: 0% 50%;
-    transform: scaleX(1);
-  }
-  50% {
-    background-position: 100% 50%;
-    transform: scaleX(1.1);
-  }
-  100% {
-    background-position: 200% 50%;
-    transform: scaleX(1);
-  }
-}
-
-/* Animation de torii gate (portail shinto) */
-@keyframes torii-glow {
+/* Animation de kanji flottants */
+@keyframes kanji-float {
   0%, 100% {
-    box-shadow:
-      0 0 10px rgba(220, 20, 60, 0.3),
-      0 0 20px rgba(255, 69, 0, 0.2),
-      inset 0 0 10px rgba(255, 215, 0, 0.1);
-  }
-  50% {
-    box-shadow:
-      0 0 20px rgba(220, 20, 60, 0.5),
-      0 0 40px rgba(255, 69, 0, 0.3),
-      inset 0 0 20px rgba(255, 215, 0, 0.2);
-  }
-}
-
-/* Animation de kanji qui apparaît */
-@keyframes kanji-reveal {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) rotate(-180deg);
-    filter: blur(10px);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.2) rotate(-90deg);
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-    filter: blur(0px);
-  }
-}
-
-/* Classes utilitaires pour les références japonaises */
-.sakura-particle {
-  position: absolute;
-  font-size: 1.5rem;
-  color: #ffb7c5;
-  animation: sakura-fall 8s linear infinite;
-  pointer-events: none;
-}
-
-.hokusai-wave-bg {
-  background: linear-gradient(45deg, #1e3a8a, #3b82f6, #60a5fa, #93c5fd);
-  background-size: 300% 300%;
-  animation: hokusai-wave 6s ease-in-out infinite;
-}
-
-.torii-frame {
-  position: relative;
-  animation: torii-glow 4s ease-in-out infinite;
-}
-
-.torii-frame::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  height: 8px;
-  background: linear-gradient(90deg, #dc143c, #ff4500, #ffd700);
-  border-radius: 4px 4px 0 0;
-  z-index: -1;
-}
-
-.torii-frame::after {
-  content: '';
-  position: absolute;
-  top: 15px;
-  left: -3px;
-  right: -3px;
-  height: 4px;
-  background: linear-gradient(90deg, #8b0000, #dc143c, #ff6347);
-  border-radius: 2px;
-  z-index: -1;
-}
-
-.kanji-effect {
-  position: relative;
-}
-
-.kanji-effect::before {
-  content: attr(data-kanji);
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  font-size: 2rem;
-  color: rgba(139, 69, 19, 0.3);
-  font-weight: bold;
-  animation: kanji-reveal 3s ease-in-out infinite;
-  z-index: -1;
-}
-
-/* Micro-interactions spécifiques aux mangas */
-.manga-panel {
-  position: relative;
-  border: 3px solid #000;
-  border-radius: 10px;
-  background: white;
-  overflow: hidden;
-}
-
-.manga-panel::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 80%, transparent 20%, rgba(0,0,0,0.03) 21%, rgba(0,0,0,0.03) 25%, transparent 26%),
-    radial-gradient(circle at 80% 20%, transparent 20%, rgba(0,0,0,0.03) 21%, rgba(0,0,0,0.03) 25%, transparent 26%),
-    radial-gradient(circle at 40% 40%, transparent 20%, rgba(0,0,0,0.03) 21%, rgba(0,0,0,0.03) 25%, transparent 26%);
-  pointer-events: none;
-}
-
-/* Effet de ligne de manga (speech bubble tail) */
-.speech-tail::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 30px;
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 15px solid white;
-  z-index: 1;
-}
-
-.speech-tail::before {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 28px;
-  width: 0;
-  height: 0;
-  border-left: 17px solid transparent;
-  border-right: 17px solid transparent;
-  border-top: 17px solid #333;
-  z-index: 0;
-}
-
-/* Effet d'onomatopée manga */
-.onomatopoeia {
-  position: relative;
-  font-family: 'Impact', 'Arial Black', sans-serif;
-  font-weight: 900;
-  text-shadow:
-    3px 3px 0px #000,
-    -1px -1px 0px #000,
-    1px -1px 0px #000,
-    -1px 1px 0px #000,
-    1px 1px 0px #000;
-  color: #fff;
-  font-size: 1.5rem;
-  transform: skew(-10deg, 0deg);
-  animation: onomatopoeia-pulse 2s ease-in-out infinite;
-}
-
-@keyframes onomatopoeia-pulse {
-  0%, 100% {
-    transform: skew(-10deg, 0deg) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: skew(-5deg, 0deg) scale(1.1);
-    opacity: 0.8;
-  }
-}
-
-/* Motifs traditionnels japonais */
-.seigaiha-pattern {
-  background-image:
-    radial-gradient(circle at 100% 50%, transparent 20%, rgba(59, 130, 246, 0.1) 21%, rgba(59, 130, 246, 0.1) 30%, transparent 31%),
-    linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.1) 25%, rgba(59, 130, 246, 0.1) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.1) 75%, rgba(59, 130, 246, 0.1) 76%, transparent 77%, transparent);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px;
-}
-
-.asanoha-pattern {
-  background-image:
-    linear-gradient(30deg, transparent 40%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 60%),
-    linear-gradient(-30deg, transparent 40%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 60%),
-    linear-gradient(30deg, transparent 40%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 60%);
-  background-size: 20px 35px;
-  background-position: 0 0, 0 0, 10px 18px;
-}
-
-/* Dégradés inspirés des couchers de soleil japonais */
-.yuuhi-gradient {
-  background: linear-gradient(135deg, #ff6b6b, #ffa500, #ffdd59, #ff8a80);
-}
-
-.fuji-gradient {
-  background: linear-gradient(to bottom, #87ceeb, #e0f6ff, #ffffff, #f5f5dc);
-}
-
-/* Animation de bambou qui pousse */
-@keyframes bamboo-grow {
-  0% {
-    height: 0;
-    opacity: 0;
-  }
-  50% {
-    height: 60%;
-    opacity: 0.7;
-  }
-  100% {
-    height: 100%;
-    opacity: 1;
-  }
-}
-
-.bamboo-element {
-  position: relative;
-  background: linear-gradient(to bottom, #228B22, #32CD32);
-  width: 8px;
-  animation: bamboo-grow 3s ease-out;
-}
-
-.bamboo-element::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: -2px;
-  right: -2px;
-  height: 2px;
-  background: #006400;
-  border-radius: 1px;
-}
-
-.bamboo-element::after {
-  content: '';
-  position: absolute;
-  top: 60%;
-  left: -2px;
-  right: -2px;
-  height: 2px;
-  background: #006400;
-  border-radius: 1px;
-}
-
-/* Emoji japonais et manga pour les micro-interactions */
-.japanese-emoji::before {
-  content: var(--emoji);
-  position: absolute;
-  font-size: 1.2rem;
-  opacity: 0;
-  animation: emoji-appear 2s ease-in-out infinite;
-}
-
-@keyframes emoji-appear {
-  0%, 80%, 100% {
-    opacity: 0;
-    transform: translateY(0) scale(1);
-  }
-  10%, 70% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.2);
-  }
-}
-
-/* Classes for the different Japanese emojis */
-.emoji-ramen { --emoji: '🍜'; }
-.emoji-sushi { --emoji: '🍣'; }
-.emoji-sake { --emoji: '🍶'; }
-.emoji-torii { --emoji: '⛩️'; }
-.emoji-fuji { --emoji: '🗾'; }
-.emoji-cherry { --emoji: '🌸'; }
-.emoji-tanuki { --emoji: '🦝'; }
-.emoji-origami { --emoji: '📃'; }
-.emoji-katana { --emoji: '⚔️'; }
-.emoji-ninja { --emoji: '🥷'; }
-
-/* Effets de scroll inspirés des mangas */
-.manga-reveal {
-  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.manga-reveal.revealed {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-/* Animation de spirale inspirée de Naruto */
-@keyframes naruto-spiral {
-  0% {
-    transform: rotate(0deg) scale(1);
-    border-radius: 50%;
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.1;
   }
   25% {
-    transform: rotate(90deg) scale(1.1);
-    border-radius: 30%;
+    transform: translateY(-15px) rotate(5deg);
+    opacity: 0.3;
   }
   50% {
-    transform: rotate(180deg) scale(0.9);
-    border-radius: 50%;
+    transform: translateY(-25px) rotate(-3deg);
+    opacity: 0.2;
   }
   75% {
-    transform: rotate(270deg) scale(1.1);
-    border-radius: 30%;
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-    border-radius: 50%;
+    transform: translateY(-10px) rotate(8deg);
+    opacity: 0.25;
   }
 }
 
-.naruto-spiral {
-  animation: naruto-spiral 4s ease-in-out infinite;
-  background: radial-gradient(circle, #ff6b35, #f7931e, #ffd700);
+/* Animation de bambous qui oscillent */
+@keyframes bamboo-sway {
+  0%, 100% {
+    transform: scaleY(1) rotate(0deg) translateX(0) translateY(var(--py,0px));
+  }
+  25% {
+    transform: scaleY(1) rotate(calc(var(--amp,1) * 2deg)) translateX(calc(var(--amp,1) * 3px)) translateY(var(--py,0px));
+  }
+  50% {
+    transform: scaleY(1) rotate(calc(var(--amp,1) * -1.4deg)) translateX(calc(var(--amp,1) * -2px)) translateY(var(--py,0px));
+  }
+  75% {
+    transform: scaleY(1) rotate(calc(var(--amp,1) * 2.4deg)) translateX(calc(var(--amp,1) * 3px)) translateY(var(--py,0px));
+  }
 }
 
-/* Animation de lignes de vitesse Dragon Ball */
-.speed-lines-dbz::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.8) 46%, rgba(255,255,255,0.8) 48%, transparent 49%),
-    linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.8) 46%, rgba(255,255,255,0.8) 48%, transparent 49%);
-  background-size: 20px 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  animation: dbz-speed-lines 0.5s ease-in-out;
+/* ====== BAMBOO FOREST (Outils de traduction) ====== */
+.bamboo-forest { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+.bamboo-element {
+  position:absolute; bottom:0; width:6px;
+  background:linear-gradient(to right,#0f4225,#195c33 35%,#2c7b48 65%,#15512d);
+  border-radius:3px;
+  animation:bamboo-sway var(--ss,10s) ease-in-out infinite;
+  animation-delay:var(--offset,0s);
+  transform-origin:bottom center;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.05), 0 4px 10px -2px rgba(0,0,0,0.25), inset 0 0 4px rgba(255,255,255,0.08);
+}
+.bamboo-element::before { /* noeuds */
+  content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.10) 0 2px,
+    rgba(0,0,0,0.15) 2px 3px,
+    transparent 3px 24px
+  );
+  mix-blend-mode:overlay; opacity:.55; border-radius:inherit;
+}
+.bamboo-element::after { /* léger highlight */
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(to right,rgba(255,255,255,0.0),rgba(255,255,255,0.25) 35%,rgba(255,255,255,0.1) 55%,rgba(255,255,255,0));
+  pointer-events:none;
+}
+.bamboo-element[data-depth="back"] { filter:blur(.5px) saturate(.85); opacity:.22; }
+.bamboo-element[data-depth="mid"] { opacity:.40; filter:blur(.15px); }
+.bamboo-element[data-depth="front"] { opacity:.52; }
+.bamboo-element.bamboo-tall { filter:brightness(1.05) saturate(1.05); }
+/* Silhouettes très hautes (fond) */
+.bamboo-silhouette { position:absolute; bottom:0; width:10px; background:linear-gradient(to right,rgba(20,70,45,.15),rgba(30,90,55,.22) 50%,rgba(15,50,35,.15)); border-radius:4px; filter:blur(0.5px); animation:bamboo-sway var(--ss,14s) ease-in-out infinite; transform-origin:bottom center; }
+.bamboo-silhouette::after {content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.08) 0 2px,rgba(0,0,0,.12) 2px 3px,transparent 3px 28px);mix-blend-mode:overlay;opacity:.45;border-radius:inherit}
+.bamboo-upper-layer {position:absolute;inset:0;pointer-events:none;z-index:0;}
+
+/* Variantes de couleur optionnelles si besoin futur */
+.bamboo-element.variant-warm { background:linear-gradient(to right,#1b472f,#24623d 40%,#358a54 70%,#1f5737); }
+
+/* Responsive: réduire densité sur mobile */
+@media (max-width: 768px) {
+  .bamboo-element { opacity:.28; }
+  .bamboo-element:nth-of-type(n+7) { display:none; }
+}
+@media (max-width: 480px) {
+  .bamboo-element:nth-of-type(n+5) { display:none; }
 }
 
-.speed-lines-dbz:hover::before {
-  opacity: 1;
+@media (prefers-reduced-motion:reduce){
+  .bamboo-element { animation:none; }
 }
 
-@keyframes dbz-speed-lines {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 20px 20px, -20px 20px; }
+/* ========== HERO BACKGROUND REFINEMENT === */
+.hero-bg {
+  position: relative;
+  background: radial-gradient(circle at 50% 35%, rgba(168,85,247,0.25), transparent 60%),
+              radial-gradient(circle at 45% 70%, rgba(236,72,153,0.18), transparent 65%),
+              linear-gradient(135deg,#faf8ff 0%,#f7f2ff 25%,#fdf7fb 55%,#fffaf5 100%);
+  overflow: hidden;
+}
+.hero-bg::before { /* subtle vignette */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at center,rgba(255,255,255,0) 40%,rgba(0,0,0,0.05) 100%);
+  mix-blend-mode:multiply;opacity:.7;
+}
+.hero-bg::after { /* noise layer */
+  content:"";position:absolute;inset:-1px;pointer-events:none;opacity:.15;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  background-size:300px 300px;mix-blend-mode:overlay;
+  animation: hero-noise 6s steps(2,end) infinite;
+}
+@keyframes hero-noise {0%,100%{transform:translate(0,0);}50%{transform:translate(-10px,8px);}}
+
+/* Kanji cloud (lighter + reusable) */
+.hero-kanji {position:absolute;inset:0;pointer-events:none;}
+.hero-kanji span {position:absolute;font-weight:600;font-family:ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.05em;user-select:none;opacity:0;animation:kanji-drift 14s linear infinite;mix-blend-mode:multiply;text-shadow:0 0 6px rgba(255,255,255,.6),0 0 14px currentColor;}
+@keyframes kanji-drift {0%{transform:translateY(20px) scale(.9);opacity:0}10%{opacity:.35}50%{opacity:.42}80%{opacity:.30}100%{transform:translateY(-40px) scale(1.05);opacity:0}}
+.hero-glow {position:absolute;inset:0;pointer-events:none;}
+.hero-glow:before,.hero-glow:after {content:"";position:absolute;border-radius:50%;filter:blur(120px);opacity:.4;animation:hero-glow-pulse 10s ease-in-out infinite;}
+.hero-glow:before {width:55vw;height:55vw;top:-20vw;left:-15vw;background:linear-gradient(125deg,rgba(168,85,247,0.50),rgba(236,72,153,0.32));}
+.hero-glow:after {width:42vw;height:42vw;bottom:-14vw;right:-2vw;background:linear-gradient(145deg,rgba(251,146,60,0.38),rgba(236,72,153,0.30));animation-delay:3s;}
+@keyframes hero-glow-pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* Utility to softly mask bottom fade into next section */
+.hero-fade-bottom {mask:linear-gradient(to bottom,rgba(0,0,0,1) 75%,rgba(0,0,0,0));}
+
+/* Reduced sakura (if kept) */
+.sakura-particle {animation-duration:10s;}
+
+/* Accessibility: reduce motion -> static background */
+@media (prefers-reduced-motion:reduce){
+  .hero-bg::after,.hero-kanji span,.hero-glow:before,.hero-glow:after {animation:none;}
+  .hero-kanji span {opacity:.12;}
+}
+
+/* === RESTAURATION KANJI RAIN (perdu lors refactor) === */
+@keyframes kanji-rain { to { transform: translateY(220%); } }
+.hero-kanji-rain { position:absolute; inset:0; overflow:hidden; pointer-events:none; mask: linear-gradient(to bottom, rgba(0,0,0,.0) 0%, rgba(0,0,0,.4) 10%, rgba(0,0,0,.9) 40%, rgba(0,0,0,.9) 70%, rgba(0,0,0,.2) 92%, rgba(0,0,0,0) 100%); }
+.hero-kanji-rain span.column { position:absolute; top:-120%; white-space:pre; display:block; font-family: ui-monospace, monospace; letter-spacing:.05em; line-height:1.35; opacity:.24; animation: kanji-rain linear infinite; filter: blur(.2px) drop-shadow(0 0 4px rgba(255,255,255,.35)); text-shadow: 0 0 8px rgba(255,255,255,.4), 0 0 12px currentColor; }
+.hero-kanji-rain span.column:nth-child(odd){ opacity:.30; }
+
+/* ===== Kanji visibility boost utilities ===== */
+@keyframes kanji-drift-boost {0%{transform:translateY(24px) scale(.9);opacity:0}8%{opacity:.45}25%{opacity:.58}55%{opacity:.65}78%{opacity:.50}100%{transform:translateY(-48px) scale(1.07);opacity:0}}
+@keyframes kanji-rain-boost {to{transform:translateY(260%);}}
+.kanji-boost .hero-kanji span {animation:kanji-drift-boost 14s linear infinite;text-shadow:0 0 6px #fff,0 0 14px currentColor,0 0 26px currentColor,0 2px 6px rgba(0,0,0,.25);filter:drop-shadow(0 0 10px currentColor) drop-shadow(0 0 30px rgba(255,255,255,.55));}
+.kanji-boost .hero-kanji-rain span.column {opacity:.38 !important;filter:blur(.15px) drop-shadow(0 0 6px rgba(255,255,255,.55)) drop-shadow(0 0 14px currentColor);text-shadow:0 0 10px #fff,0 0 18px currentColor,0 0 34px currentColor;animation:kanji-rain-boost linear infinite;}
+.kanji-boost .floating-kanji {color:color-mix(in srgb,currentColor 92%,white 8%);text-shadow:0 0 6px #fff,0 0 14px currentColor,0 0 30px currentColor,0 2px 8px rgba(0,0,0,.3);filter:drop-shadow(0 0 12px currentColor) drop-shadow(0 0 40px rgba(255,255,255,.6));}
+/* Extra max level (apply .kanji-max in addition) */
+.kanji-max .hero-kanji span {animation-duration:12s;filter:drop-shadow(0 0 14px currentColor) drop-shadow(0 0 46px currentColor);}
+.kanji-max .hero-kanji-rain span.column {opacity:.48 !important;}
+.kanji-max .floating-kanji {filter:drop-shadow(0 0 18px currentColor) drop-shadow(0 0 60px currentColor);}
+
+/* ====== BENTO SECTION ENHANCED ====== */
+@keyframes bento-fade-up {0%{opacity:0;transform:translateY(40px) scale(.97);}60%{opacity:1;}100%{opacity:1;transform:translateY(0) scale(1);} }
+.bento-card {opacity:0;}
+.bento-card.is-visible {animation:bento-fade-up .8s cubic-bezier(.22,.85,.32,1) forwards;}
+.bento-card.is-visible:nth-of-type(2){animation-delay:.06s}
+.bento-card.is-visible:nth-of-type(3){animation-delay:.12s}
+.bento-card.is-visible:nth-of-type(4){animation-delay:.18s}
+
+.magic-bento-bg::before, .magic-bento-bg::after {content:"";position:absolute;inset:0;pointer-events:none;}
+.magic-bento-bg::before {background:
+  radial-gradient(circle at 25% 35%,rgba(168,85,247,.20),transparent 55%),
+  radial-gradient(circle at 75% 65%,rgba(236,72,153,.18),transparent 60%),
+  linear-gradient(135deg,#fcfbff 0%,#faf5ff 40%,#fff7f9 70%,#fffaf4 100%);
+  mix-blend-mode:normal;}
+.magic-bento-bg::after {background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");opacity:.18;mix-blend-mode:overlay;animation:hero-noise 9s steps(2,end) infinite;}
+
+/* Parallax wrappers for bamboo */
+.bamboo-layer {position:absolute;bottom:0;will-change:transform;}
+.bamboo-layer[data-depth='back'] {transform:translateY(var(--py,0));}
+.bamboo-layer[data-depth='front'] {transform:translateY(var(--py,0));}
+/* Provide small shadow overlap fade */
+.magic-bento-ground {position:absolute;inset-x:0;bottom:0;height:120px;background:linear-gradient(to top,rgba(255,255,255,.85),rgba(255,255,255,.6) 35%,rgba(255,255,255,0));pointer-events:none;}
+
+@media (prefers-reduced-motion:reduce){
+  .bento-card {opacity:1 !important;animation:none !important;}
+}
+
+/* Animation de feuillage de bambou */
+@keyframes bamboo-leaf-sway {0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(4px) rotate(var(--deg,3deg));}}
+.bamboo-canopy {position:absolute;top:0;left:0;right:0;height:160px;pointer-events:none;z-index:2;}
+.bamboo-canopy::before {content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(34,74,52,.35),rgba(34,74,52,0) 70%);mix-blend-mode:multiply;}
+.bamboo-crossbar {position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,#225739 0 28px,#2c6f46 28px 32px,#225739 32px 64px);box-shadow:0 2px 4px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.08) inset;}
+.bamboo-crossbar.thin {height:6px;opacity:.85;}
+.bamboo-leaf-cluster {position:absolute;display:flex;gap:4px;}
+.bamboo-leaf {width:14px;height:38px;border-radius:14px 14px 4px 4px;background:linear-gradient(145deg,#2d7d4d,#1d5f38);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 2px 4px rgba(0,0,0,.25);opacity:.9;animation:bamboo-leaf-sway 4.5s ease-in-out infinite;animation-delay:var(--delay,0s);transform-origin:top center;}
+.bamboo-leaf.alt {background:linear-gradient(145deg,#338c57,#236b41);}
+.bamboo-leaf.small {height:30px;width:12px;}
+.bamboo-leaf-cluster[data-depth="back"] .bamboo-leaf {filter:blur(.4px) brightness(.9);opacity:.55;}
+@media (max-width:768px){.bamboo-canopy{height:120px;}.bamboo-leaf{height:30px;}}
+
+/* ========== CURSEURS AVANCÉS ========== */
+
+/* Curseur par défaut - particule d'énergie spirituelle */
+body {
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" fill="%238855ff" fill-opacity="0.8"/><circle cx="12" cy="12" r="2" fill="%23ffffff" fill-opacity="0.9"/></svg>') 12 12, auto;
+}
+
+/* Curseurs spécialisés manga */
+a, button, [role="button"], .clickable {
+  /* Étoile de pouvoir (Dragon Ball inspired) */
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9l-5 4.74L18 19l-6-3-6 3 1-5.26L2 9l6.91-.74L12 2z" fill="%23fbbf24" fill-opacity="0.9"/><path d="M12 4l2.5 5L19 9.5l-4 3.8L16 19l-4-2-4 2 1-5.7L5 9.5l4.5-.5L12 4z" fill="%23ffffff" fill-opacity="0.8"/></svg>') 12 12, pointer;
+}
+
+/* Curseur pour les zones de texte */
+input, textarea, [contenteditable] {
+  /* Plume de calligraphie (pour les zones de texte) */
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="%23667eea" fill-opacity="0.8"/></svg>') 12 12, text;
+}
+
+/* Curseur pour les éléments redimensionnables */
+.resize, .resizer {
+  /* Shuriken pour les éléments redimensionnables */
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L8 8L2 12L8 16L12 22L16 16L22 12L16 8L12 2Z" fill="%23e73c7e" fill-opacity="0.8"/><circle cx="12" cy="12" r="3" fill="%23ffffff" fill-opacity="0.9"/></svg>') 12 12, nw-resize;
+}
+
+/* Curseur pour les états de chargement */
+.loading, .spinner {
+  /* Cercle magique en rotation */
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23a855f7" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="15.708"/><circle cx="12" cy="12" r="6" stroke="%23ec4899" stroke-width="2" fill="none"/></svg>') 12 12, wait;
+}
+
+/* Curseur pour les éléments draggable */
+.grab, .draggable {
+  /* Main d'énergie (Naruto chakra hand) */
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11V7a1 1 0 012 0v4m0 0V7a1 1 0 112 0v4m-3 4V7.5a1 1 0 011-1 1 1 0 011 1V11m0 4v-1a1 1 0 011-1 1 1 0 011 1v1m0 0v1a5 5 0 01-10 0V9a1 1 0 011-1 1 1 0 011 1v6" stroke="%2323d5ab" stroke-width="2" fill="%2323d5ab" fill-opacity="0.3"/></svg>') 12 12, grab;
+}
+
+/* Curseur pour les éléments en cours de drag */
+.grabbing {
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11V7a1 1 0 012 0v4m0 0V7a1 1 0 112 0v4m-3 4V7.5a1 1 0 011-1 1 1 0 011 1V11m0 4v-1a1 1 0 011-1 1 1 0 011 1v1m0 0v1a5 5 0 01-10 0V9a1 1 0 011-1 1 1 0 011 1v6" stroke="%23f59e0b" stroke-width="2" fill="%23f59e0b" fill-opacity="0.5"/></svg>') 12 12, grabbing;
+}
+
+/* Curseur pour les éléments désactivés */
+.not-allowed, .disabled {
+  /* X d'interdiction avec aura rouge */
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23ef4444" stroke-width="2" fill="%23ef4444" fill-opacity="0.1"/><path d="M15 9L9 15M9 9l6 6" stroke="%23ef4444" stroke-width="2"/></svg>') 12 12, not-allowed;
 }
