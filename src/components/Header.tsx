@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -42,13 +41,13 @@ const Header = () => {
             to="/"
             className="relative px-2 lg:px-3 py-1 text-gray-700 hover:text-purple-700 transition-colors duration-200 after:content-[''] after:block after:h-0.5 after:bg-gradient-to-r after:from-purple-400 after:to-pink-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
           >
-            Home
+            Accueil
           </Link>
           <Link
             to="/translate"
             className="relative px-2 lg:px-3 py-1 text-purple-600 hover:text-pink-600 transition-colors duration-200 after:content-[''] after:block after:h-0.5 after:bg-gradient-to-r after:from-pink-400 after:to-orange-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
           >
-            Translate
+            Traduire
           </Link>
         </nav>
 
@@ -58,13 +57,13 @@ const Header = () => {
             to="/login"
             className="text-gray-700 hover:text-purple-600 transition-colors px-2 lg:px-3 py-1 rounded-xl font-medium"
           >
-            Login
+            Connexion
           </Link>
           <Link
             to="/register"
             className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white px-4 lg:px-5 py-2 rounded-xl font-bold shadow-md hover:scale-105 transition-transform"
           >
-            Sign Up
+            S'inscrire
           </Link>
         </div>
 
@@ -86,25 +85,25 @@ const Header = () => {
                 to="/"
                 className="px-4 py-2 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-colors"
               >
-                Home
+                Accueil
               </Link>
               <Link
                 to="/translate"
                 className="px-4 py-2 rounded-xl text-purple-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-orange-50 transition-colors"
               >
-                Translate
+                Traduire
               </Link>
               <Link
                 to="/login"
                 className="px-4 py-2 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-colors"
               >
-                Login
+                Connexion
               </Link>
                 <Link
                 to="/register"
                 className="px-8 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white font-bold shadow-md mt-2 hover:scale-105 transition-transform inline-block w-fit"
                 >
-                Sign Up
+                S'inscrire
                 </Link>
             </nav>
           </div>

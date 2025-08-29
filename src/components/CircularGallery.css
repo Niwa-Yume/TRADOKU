@@ -6,11 +6,7 @@
 }
 
 .circular-gallery canvas {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
-}
-
-html.no-js .circular-gallery {
-  display: none;
 }

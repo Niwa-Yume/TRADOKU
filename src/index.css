@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -70,10 +69,107 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    /* Curseur par défaut - particule d'énergie spirituelle */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" fill="%238855ff" fill-opacity="0.8"/><circle cx="12" cy="12" r="2" fill="%23ffffff" fill-opacity="0.9"/></svg>') 12 12, auto;
   }
+
+  /* Curseurs spécialisés manga */
+  a, button, [role="button"], .clickable {
+    /* Étoile de pouvoir (Dragon Ball inspired) */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9l-5 4.74L18 19l-6-3-6 3 1-5.26L2 9l6.91-.74L12 2z" fill="%23fbbf24" fill-opacity="0.9"/><path d="M12 4l2.5 5L19 9.5l-4 3.8L16 19l-4-2-4 2 1-5.7L5 9.5l4.5-.5L12 4z" fill="%23ffffff" fill-opacity="0.8"/></svg>') 12 12, pointer;
+  }
+
+  input, textarea, [contenteditable] {
+    /* Plume de calligraphie (pour les zones de texte) */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="%23667eea" fill-opacity="0.8"/></svg>') 12 12, text;
+  }
+
+  .resize, .resizer {
+    /* Shuriken pour les éléments redimensionnables */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L8 8L2 12L8 16L12 22L16 16L22 12L16 8L12 2Z" fill="%23e73c7e" fill-opacity="0.8"/><circle cx="12" cy="12" r="3" fill="%23ffffff" fill-opacity="0.9"/></svg>') 12 12, nw-resize;
+  }
+
+  .loading, .spinner {
+    /* Cercle magique en rotation */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23a855f7" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="15.708"/><circle cx="12" cy="12" r="6" stroke="%23ec4899" stroke-width="2" fill="none"/></svg>') 12 12, wait;
+  }
+
+  .grab, .draggable {
+    /* Main d'énergie (Naruto chakra hand) */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11V7a1 1 0 012 0v4m0 0V7a1 1 0 112 0v4m-3 4V7.5a1 1 0 011-1 1 1 0 011 1V11m0 4v-1a1 1 0 011-1 1 1 0 011 1v1m0 0v1a5 5 0 01-10 0V9a1 1 0 011-1 1 1 0 011 1v6" stroke="%2323d5ab" stroke-width="2" fill="%2323d5ab" fill-opacity="0.3"/></svg>') 12 12, grab;
+  }
+
+  .grabbing {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11V7a1 1 0 012 0v4m0 0V7a1 1 0 112 0v4m-3 4V7.5a1 1 0 011-1 1 1 0 011 1V11m0 4v-1a1 1 0 011-1 1 1 0 011 1v1m0 0v1a5 5 0 01-10 0V9a1 1 0 011-1 1 1 0 011 1v6" stroke="%23f59e0b" stroke-width="2" fill="%23f59e0b" fill-opacity="0.5"/></svg>') 12 12, grabbing;
+  }
+
+  .not-allowed, .disabled {
+    /* X d'interdiction avec aura rouge */
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23ef4444" stroke-width="2" fill="%23ef4444" fill-opacity="0.1"/><path d="M15 9L9 15M9 9l6 6" stroke="%23ef4444" stroke-width="2"/></svg>') 12 12, not-allowed;
+  }
+}
+
+/* ========== ANIMATIONS DE CURSEUR AVANCÉES ========== */
+
+/* Animation de particules qui suivent le curseur */
+.cursor-trail-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-trail {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(136, 85, 255, 0.8) 0%, transparent 70%);
+  animation: trail-fade 0.8s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes trail-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+/* Effet d'aura au hover des éléments interactifs */
+a:hover, button:hover, [role="button"]:hover {
+  position: relative;
+}
+
+a:hover::before, button:hover::before, [role="button"]:hover::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #8855ff, #ec4899, #f59e0b);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(4px);
+  animation: aura-glow 2s ease-in-out infinite;
+}
+
+@keyframes aura-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
 }
 
 /* Minimal, professional animations */
@@ -122,4 +218,736 @@
 /* Smooth transitions */
 .smooth-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== ANIMATIONS MANGA-INSPIRED ========== */
+
+/* Animation de flottement comme les particules spirituelles dans les animes */
+@keyframes float-spirit {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translateY(-10px) rotate(120deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(-5px) rotate(240deg);
+    opacity: 0.8;
+  }
+}
+
+/* Animation d'aura énergétique */
+@keyframes aura-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(132, 0, 255, 0.3), 0 0 40px rgba(255, 20, 147, 0.2), 0 0 60px rgba(255, 165, 0, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(132, 0, 255, 0.5), 0 0 60px rgba(255, 20, 147, 0.3), 0 0 90px rgba(255, 165, 0, 0.2);
+    transform: scale(1.02);
+  }
+}
+
+/* Animation de transformation inspirée des power-ups */
+@keyframes power-up {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(90deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  75% { transform: scale(1.1) rotate(270deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Animation de vague spirituelle (Naruto/Bleach inspired) */
+@keyframes chakra-flow {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.6;
+  }
+}
+
+/* Animation de scintillement magique */
+@keyframes magic-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) rotate(72deg);
+  }
+  40% {
+    opacity: 0.8;
+    transform: scale(1.2) rotate(144deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.8) rotate(216deg);
+  }
+  80% {
+    opacity: 0.6;
+    transform: scale(1.1) rotate(288deg);
+  }
+}
+
+/* ========== CLASSES UTILITAIRES MANGA ========== */
+
+.anime-float {
+  animation: float-spirit 4s ease-in-out infinite;
+}
+
+.power-aura {
+  animation: aura-pulse 3s ease-in-out infinite;
+}
+
+.magic-transform {
+  animation: power-up 2s ease-in-out infinite;
+}
+
+.chakra-background {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: chakra-flow 15s ease infinite;
+}
+
+.sparkle-effect::before {
+  content: '✦';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.2rem;
+  color: #fbbf24;
+  animation: magic-sparkle 2s ease-in-out infinite;
+}
+
+/* Easter Egg: Konami Code Unlock */
+.konami-unlocked {
+  animation: power-up 1s ease-in-out;
+  background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd700, #ff6b35);
+  background-size: 400% 400%;
+  animation: chakra-flow 2s ease infinite, power-up 2s ease-in-out infinite;
+}
+
+/* ========== INTERACTIONS AVANCÉES ========== */
+
+/* Hover effect inspiré des attaques élémentaires */
+.element-fire:hover {
+  background: linear-gradient(45deg, #ff4500, #ff6347, #ffa500);
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.6);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.element-water:hover {
+  background: linear-gradient(45deg, #1e90ff, #00bfff, #87ceeb);
+  box-shadow: 0 0 30px rgba(30, 144, 255, 0.6);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.element-earth:hover {
+  background: linear-gradient(45deg, #8b4513, #daa520, #cd853f);
+  box-shadow: 0 0 30px rgba(139, 69, 19, 0.6);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.element-wind:hover {
+  background: linear-gradient(45deg, #98fb98, #90ee90, #00fa9a);
+  box-shadow: 0 0 30px rgba(152, 251, 152, 0.6);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+/* ========== SCROLL EFFECTS ========== */
+
+/* Parallax subtil inspiré des backgrounds de combat */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Animation de révélation au scroll (manga panel reveal) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== MICRO-INTERACTIONS MANGA ========== */
+
+/* Effet de bulle de dialogue au hover */
+.speech-bubble:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.speech-bubble:hover::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: #333;
+  z-index: 1000;
+}
+
+/* Effet de ligne d'action (speed lines) */
+.speed-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.1) 2px,
+    rgba(255,255,255,0.1) 4px
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.speed-lines:hover::before {
+  opacity: 1;
+}
+
+/* ========== LOADING STATES MANGA ========== */
+
+/* Loader inspiré des cercles magiques */
+.magic-circle-loader {
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  border-top: 3px solid #8855ff;
+  border-radius: 50%;
+  animation: magic-spin 1s linear infinite;
+  position: relative;
+}
+
+.magic-circle-loader::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border: 2px solid transparent;
+  border-bottom: 2px solid #ff20a0;
+  border-radius: 50%;
+  animation: magic-spin 1.5s linear infinite reverse;
+}
+
+@keyframes magic-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========== RESPONSIVE MANGA PATTERNS ========== */
+
+/* Grid pattern inspiré des planches manga */
+.manga-grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Pattern de points Benday (manga/comic style) */
+.benday-dots {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* ========== EASTER EGGS CACHÉS ========== */
+
+/* Code Konami: séquence spéciale */
+body.konami-mode {
+  background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+  background-size: 400% 400%;
+  animation: chakra-flow 4s ease infinite;
+}
+
+body.konami-mode * {
+  animation: magic-sparkle 2s ease-in-out infinite;
+}
+
+/* Easter egg: Triple click pour débloquer mode ninja */
+.ninja-mode {
+  filter: sepia(100%) hue-rotate(200deg) saturate(2);
+  transition: filter 0.5s ease;
+}
+
+/* ========== OPTIMISATIONS PERFORMANCE ========== */
+
+/* Hardware acceleration pour les animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Smooth scrolling amélioré */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========== ACCESSIBILITY MANGA-FRIENDLY ========== */
+
+/* Respecter les préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Curseurs simplifiés en mode accessibilité */
+  body {
+    cursor: auto;
+  }
+
+  a, button, [role="button"] {
+    cursor: pointer;
+  }
+
+  input, textarea, [contenteditable] {
+    cursor: text;
+  }
+}
+
+/* High contrast mode pour les utilisateurs ayant des besoins spéciaux */
+@media (prefers-contrast: high) {
+  .bg-gradient-to-r {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  /* Curseurs contrastés en mode high contrast */
+  body {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="6" fill="%23000000"/><circle cx="12" cy="12" r="3" fill="%23ffffff"/></svg>') 12 12, auto;
+  }
+
+  a, button, [role="button"] {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" fill="%23000000"/><circle cx="12" cy="12" r="4" fill="%23ffffff"/></svg>') 12 12, pointer;
+  }
+}
+
+/* ========== MICRO-RÉFÉRENCES MANGA ET JAPON ========== */
+
+/* Animation de feuilles de sakura qui tombent */
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-50vh) rotate(90deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-25vh) rotate(180deg);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(-10vh) rotate(270deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Animation de vagues japonaises (hokusai inspired) */
+@keyframes hokusai-wave {
+  0% {
+    background-position: 0% 50%;
+    transform: scaleX(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scaleX(1.1);
+  }
+  100% {
+    background-position: 200% 50%;
+    transform: scaleX(1);
+  }
+}
+
+/* Animation de torii gate (portail shinto) */
+@keyframes torii-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 10px rgba(220, 20, 60, 0.3),
+      0 0 20px rgba(255, 69, 0, 0.2),
+      inset 0 0 10px rgba(255, 215, 0, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(220, 20, 60, 0.5),
+      0 0 40px rgba(255, 69, 0, 0.3),
+      inset 0 0 20px rgba(255, 215, 0, 0.2);
+  }
+}
+
+/* Animation de kanji qui apparaît */
+@keyframes kanji-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2) rotate(-90deg);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0px);
+  }
+}
+
+/* Classes utilitaires pour les références japonaises */
+.sakura-particle {
+  position: absolute;
+  font-size: 1.5rem;
+  color: #ffb7c5;
+  animation: sakura-fall 8s linear infinite;
+  pointer-events: none;
+}
+
+.hokusai-wave-bg {
+  background: linear-gradient(45deg, #1e3a8a, #3b82f6, #60a5fa, #93c5fd);
+  background-size: 300% 300%;
+  animation: hokusai-wave 6s ease-in-out infinite;
+}
+
+.torii-frame {
+  position: relative;
+  animation: torii-glow 4s ease-in-out infinite;
+}
+
+.torii-frame::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  height: 8px;
+  background: linear-gradient(90deg, #dc143c, #ff4500, #ffd700);
+  border-radius: 4px 4px 0 0;
+  z-index: -1;
+}
+
+.torii-frame::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: -3px;
+  right: -3px;
+  height: 4px;
+  background: linear-gradient(90deg, #8b0000, #dc143c, #ff6347);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+.kanji-effect {
+  position: relative;
+}
+
+.kanji-effect::before {
+  content: attr(data-kanji);
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  font-size: 2rem;
+  color: rgba(139, 69, 19, 0.3);
+  font-weight: bold;
+  animation: kanji-reveal 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Micro-interactions spécifiques aux mangas */
+.manga-panel {
+  position: relative;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+}
+
+.manga-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, transparent 20%, rgba(0,0,0,0.03) 21%, rgba(0,0,0,0.03) 25%, transparent 26%),
+    radial-gradient(circle at 80% 20%, transparent 20%, rgba(0,0,0,0.03) 21%, rgba(0,0,0,0.03) 25%, transparent 26%),
+    radial-gradient(circle at 40% 40%, transparent 20%, rgba(0,0,0,0.03) 21%, rgba(0,0,0,0.03) 25%, transparent 26%);
+  pointer-events: none;
+}
+
+/* Effet de ligne de manga (speech bubble tail) */
+.speech-tail::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid white;
+  z-index: 1;
+}
+
+.speech-tail::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 28px;
+  width: 0;
+  height: 0;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-top: 17px solid #333;
+  z-index: 0;
+}
+
+/* Effet d'onomatopée manga */
+.onomatopoeia {
+  position: relative;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  text-shadow:
+    3px 3px 0px #000,
+    -1px -1px 0px #000,
+    1px -1px 0px #000,
+    -1px 1px 0px #000,
+    1px 1px 0px #000;
+  color: #fff;
+  font-size: 1.5rem;
+  transform: skew(-10deg, 0deg);
+  animation: onomatopoeia-pulse 2s ease-in-out infinite;
+}
+
+@keyframes onomatopoeia-pulse {
+  0%, 100% {
+    transform: skew(-10deg, 0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: skew(-5deg, 0deg) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Motifs traditionnels japonais */
+.seigaiha-pattern {
+  background-image:
+    radial-gradient(circle at 100% 50%, transparent 20%, rgba(59, 130, 246, 0.1) 21%, rgba(59, 130, 246, 0.1) 30%, transparent 31%),
+    linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.1) 25%, rgba(59, 130, 246, 0.1) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.1) 75%, rgba(59, 130, 246, 0.1) 76%, transparent 77%, transparent);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.asanoha-pattern {
+  background-image:
+    linear-gradient(30deg, transparent 40%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 60%),
+    linear-gradient(-30deg, transparent 40%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 60%),
+    linear-gradient(30deg, transparent 40%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 60%);
+  background-size: 20px 35px;
+  background-position: 0 0, 0 0, 10px 18px;
+}
+
+/* Dégradés inspirés des couchers de soleil japonais */
+.yuuhi-gradient {
+  background: linear-gradient(135deg, #ff6b6b, #ffa500, #ffdd59, #ff8a80);
+}
+
+.fuji-gradient {
+  background: linear-gradient(to bottom, #87ceeb, #e0f6ff, #ffffff, #f5f5dc);
+}
+
+/* Animation de bambou qui pousse */
+@keyframes bamboo-grow {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 60%;
+    opacity: 0.7;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.bamboo-element {
+  position: relative;
+  background: linear-gradient(to bottom, #228B22, #32CD32);
+  width: 8px;
+  animation: bamboo-grow 3s ease-out;
+}
+
+.bamboo-element::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -2px;
+  right: -2px;
+  height: 2px;
+  background: #006400;
+  border-radius: 1px;
+}
+
+.bamboo-element::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  left: -2px;
+  right: -2px;
+  height: 2px;
+  background: #006400;
+  border-radius: 1px;
+}
+
+/* Emoji japonais et manga pour les micro-interactions */
+.japanese-emoji::before {
+  content: var(--emoji);
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: emoji-appear 2s ease-in-out infinite;
+}
+
+@keyframes emoji-appear {
+  0%, 80%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  10%, 70% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.2);
+  }
+}
+
+/* Classes for the different Japanese emojis */
+.emoji-ramen { --emoji: '🍜'; }
+.emoji-sushi { --emoji: '🍣'; }
+.emoji-sake { --emoji: '🍶'; }
+.emoji-torii { --emoji: '⛩️'; }
+.emoji-fuji { --emoji: '🗾'; }
+.emoji-cherry { --emoji: '🌸'; }
+.emoji-tanuki { --emoji: '🦝'; }
+.emoji-origami { --emoji: '📃'; }
+.emoji-katana { --emoji: '⚔️'; }
+.emoji-ninja { --emoji: '🥷'; }
+
+/* Effets de scroll inspirés des mangas */
+.manga-reveal {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.manga-reveal.revealed {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Animation de spirale inspirée de Naruto */
+@keyframes naruto-spiral {
+  0% {
+    transform: rotate(0deg) scale(1);
+    border-radius: 50%;
+  }
+  25% {
+    transform: rotate(90deg) scale(1.1);
+    border-radius: 30%;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.9);
+    border-radius: 50%;
+  }
+  75% {
+    transform: rotate(270deg) scale(1.1);
+    border-radius: 30%;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    border-radius: 50%;
+  }
+}
+
+.naruto-spiral {
+  animation: naruto-spiral 4s ease-in-out infinite;
+  background: radial-gradient(circle, #ff6b35, #f7931e, #ffd700);
+}
+
+/* Animation de lignes de vitesse Dragon Ball */
+.speed-lines-dbz::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.8) 46%, rgba(255,255,255,0.8) 48%, transparent 49%),
+    linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.8) 46%, rgba(255,255,255,0.8) 48%, transparent 49%);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  animation: dbz-speed-lines 0.5s ease-in-out;
+}
+
+.speed-lines-dbz:hover::before {
+  opacity: 1;
+}
+
+@keyframes dbz-speed-lines {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 20px 20px, -20px 20px; }
 }

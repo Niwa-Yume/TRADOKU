@@ -3,27 +3,27 @@ import CircularGallery from './CircularGallery';
 const HowItWorksSection = () => {
   const steps = [
     {
-      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop&crop=center", // Document upload
+      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop&crop=center", // Upload PDF
       text: "Upload Chapter"
     },
     {
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center", // Computer screen/rendering
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center", // Page processing
       text: "Page Rendering"
     },
     {
-      image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop&crop=center", // Drawing/annotation
-      text: "Bubble Annotation"
+      image: "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?w=800&h=600&fit=crop&crop=center", // Bubble detection/annotation
+      text: "Bubble Detection"
     },
     {
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center", // Text scanning/OCR
-      text: "OCR Extraction"
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&crop=center", // OCR text extraction
+      text: "Text Extraction"
     },
     {
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center", // AI/Robot
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center", // AI translation
       text: "AI Translation"
     },
     {
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center", // Validation/checking
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center", // Manual validation
       text: "Manual Validation"
     }
   ];
@@ -33,10 +33,10 @@ const HowItWorksSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            How It Works
+            Comment ça fonctionne
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Experience our interactive 3D gallery showcasing the manga translation process
+            Découvrez notre processus de traduction interactive étape par étape dans cette galerie 3D immersive
           </p>
         </div>
 
